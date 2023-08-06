@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StageInfo_03
   m_EditorClassIdentifier: 
   stageName: "vs\u30AD\u30F3\u30B0\u30B3\u30D6\u30BF"
-  stageImage: {fileID: 2800000, guid: 07f82f01310dea244b835017cf801a2e, type: 3}
+  stageImage: {fileID: 2800000, guid: d090ba9d582f46a478e37c8236fdbe69, type: 3}
   mokuhyoJosenritu: 0.9
   sceneName: Game Scene_JT
