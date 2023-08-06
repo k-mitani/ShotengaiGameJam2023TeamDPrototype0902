@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/k-mitani/StageSelection/StageSelectionScene.unity
     guid: 21b303291518cbe47b246ebdb5d0bccd
+  - enabled: 1
+    path: Assets/k-mitani/CreditScene.unity
+    guid: 60711a351fdd488439f3f7a64acfb371
   m_configObjects: {}
