@@ -54,6 +54,6 @@ public class StageSelectionSceneManager : MonoBehaviour
         //    SceneName = "Game Scene",
         //    Score = UnityEngine.Random.value,
         //};
-        SceneManager.LoadScene("ResultViewScene");
+        SceneManager.LoadScene("CreditScene");
     }
 }
