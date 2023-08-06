@@ -20,6 +20,6 @@ public class TitleSceneManager : MonoBehaviour
 
     public void OnGameStartClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("StageSelectionScene");
     }
 }
