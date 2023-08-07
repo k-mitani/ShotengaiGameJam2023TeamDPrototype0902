@@ -267,8 +267,9 @@ MonoBehaviour:
   - {fileID: 777155840}
   - {fileID: 880552296}
   - {fileID: 440571909}
+  m_bullet: {fileID: 0}
   m_speed: 3
-  distanceMin: 2
+  m_distanceMin: 2
 --- !u!4 &250306410
 Transform:
   m_ObjectHideFlags: 0
