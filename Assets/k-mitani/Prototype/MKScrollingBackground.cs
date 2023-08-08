@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollingBackground : MonoBehaviour
+public class MKScrollingBackground : MonoBehaviour
 {
     [SerializeField] private float m_scrollSpeed = -0.5f;
     [SerializeField] private float m_scrollStartPosition = 0;
