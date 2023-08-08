@@ -16,6 +16,11 @@ public class MKPlayer : MKPlayerFormationUnit
     {
         // ˆÚ“®
         Move();
+        // ’e”­ŽË
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Kobuta.Shoot();
+        }
     }
 
     /// <summary>

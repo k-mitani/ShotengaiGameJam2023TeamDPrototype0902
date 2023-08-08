@@ -13,6 +13,14 @@ public static class MKUtil
         MKKobutaType.Blue => MKKobutaType.Red,
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, null),
     };
+
+    public static Color GetColor(MKKobutaType type) => type switch
+    {
+        MKKobutaType.Red => Color.red,
+        MKKobutaType.Green => Color.green,
+        MKKobutaType.Blue => Color.blue,
+        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null),
+    };
 }
 
 
