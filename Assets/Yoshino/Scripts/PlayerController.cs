@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,9 +9,9 @@ public class PlayerController : MonoBehaviour
     //弾オブジェクト
     [SerializeField] private GameObject m_bullet = null;
     //移動速度
-    [SerializeField] private float m_speed = 0f;
+    [SerializeField] private float m_speed = 5f;
     //プレイヤー同士の間隔
-    [SerializeField] private float m_distanceMin = 0.1f;
+    [SerializeField] private float m_distanceMin = 2f;
 
     //プレイヤーListの先頭
     private GameObject m_head = null;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D m_playerRb = null;
 
+    private Launcher m_launcher = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,12 @@ public class PlayerController : MonoBehaviour
         }
         PlayerMove();
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            m_launcher = m_player.GetComponent<Launcher>();
+            m_launcher.Shoot();
+        }
+
         FollowUp(m_element1, m_player);
         FollowUp(m_element2, m_element1);
     }
@@ -62,12 +70,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            m_player.transform.localScale = new Vector3(-1, 1, 1);
+            m_player.transform.rotation = Quaternion.Euler(0, -180, 0);
             m_playerRb.velocity = new Vector2(-m_speed, m_playerRb.velocity.y);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            m_player.transform.localScale = new Vector3(1, 1, 1);
+            m_player.transform.rotation = Quaternion.Euler(0, 0, 0);
             m_playerRb.velocity = new Vector2(m_speed, m_playerRb.velocity.y);
         }
         if (Input.GetKey(KeyCode.W))
@@ -118,11 +126,12 @@ public class PlayerController : MonoBehaviour
             //追従するオブジェクトへ向ける
             if (dir.x >= 0)
             {
-                element.transform.localScale = new Vector3(1, 1, 1);
+                element.transform.rotation = Quaternion.Euler(0, 0, 0);
+
             }
             else
             {
-                element.transform.localScale = new Vector3(-1, 1, 1);
+                element.transform.rotation = Quaternion.Euler(0, -180, 0);
             }
         }
     }
