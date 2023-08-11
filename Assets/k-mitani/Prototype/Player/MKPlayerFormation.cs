@@ -13,7 +13,8 @@ public class MKPlayerFormation : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) ||
-            Input.GetKeyDown(KeyCode.RightShift))
+            Input.GetKeyDown(KeyCode.RightShift) ||
+            Input.GetKeyDown(KeyCode.Z))
         {
             Rearrange();
         }
