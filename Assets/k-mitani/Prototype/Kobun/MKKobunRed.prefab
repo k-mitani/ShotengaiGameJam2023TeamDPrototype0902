@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 6806305479957640078}
   - component: {fileID: 6806305479957640077}
   - component: {fileID: 6806305479957640076}
+  - component: {fileID: 1666807422333674745}
   m_Layer: 0
   m_Name: MKKobunRed
   m_TagString: MKKobun
@@ -225,5 +226,17 @@ MonoBehaviour:
   hp: 3
   m_animator: {fileID: 8039445394926306792}
   m_renderer: {fileID: 8278196193312922649}
-  m_text: {fileID: 0}
   m_popupTextPrefab: {fileID: -8106875646781159193, guid: e3177c0161795624bb06a3992fb85270, type: 3}
+--- !u!114 &1666807422333674745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806305479957640075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81dbdd045fce3dd4f85e8690505c091f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 1
