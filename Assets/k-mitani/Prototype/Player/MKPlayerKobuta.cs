@@ -10,7 +10,7 @@ public class MKPlayerKobuta : MonoBehaviour
     [SerializeField] private MKPlayerBullet m_bulletPrefab;
     private SpriteRenderer m_renderer;
     private Vector3 m_bulletPositionOffset = new Vector3(0.5f, 0, 0);
-    private bool m_isWounded = false;
+    private bool m_damaged = false;
 
     private void Awake()
     {
@@ -20,16 +20,17 @@ public class MKPlayerKobuta : MonoBehaviour
     public void Shoot()
     {
         var bullet = Instantiate(m_bulletPrefab, transform.position + m_bulletPositionOffset, Quaternion.identity);
-        bullet.Initialize(Type);
+        bullet.Initialize(Type, m_damaged);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out MKKobun kobun))
         {
-            Debug.Log("Hit!");
-            m_isWounded = true;
+            Debug.Log("Hit!!");
+            m_damaged = true;
             m_renderer.color = new Color(1, 1, 1, 0.25f);
+            MKUIManager.Instance.SetKobutaDamaged(Type, m_damaged);
         }
     }
 }

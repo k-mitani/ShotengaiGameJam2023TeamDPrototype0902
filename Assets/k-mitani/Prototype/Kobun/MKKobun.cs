@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
@@ -27,7 +28,12 @@ public class MKKobun : MonoBehaviour
         var damage = favorite ? 3 : 1;
         hp -= damage;
         var pop = Instantiate(m_popupTextPrefab, transform.position, Quaternion.identity);
-        pop.SetText(favorite ? "+500🥰" : "+100😋");
+
+        var score = favorite ? 500 : 100;
+        if (bullet.IsWeak) score /= 2;
+        MKUIManager.Instance.AddScore(score);
+
+        pop.SetText($"+{score}{(favorite ? "🥰" : "😋")}");
         if (hp <= 0)
         {
             StartCoroutine(AfterDead());

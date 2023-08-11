@@ -8,12 +8,14 @@ public class MKPlayerBullet : MonoBehaviour
     [SerializeField] private SpriteRenderer m_bulletRenderer;
     [SerializeField] private float m_speed = 1;
     public MKKobutaType KobutaType { get; private set; }
+    public bool IsWeak { get; private set; } = false;
 
     private ParticleSystem m_particleSystem;
 
-    public void Initialize(MKKobutaType type)
+    public void Initialize(MKKobutaType type, bool isWeak)
     {
         KobutaType = type;
+        IsWeak = isWeak;
         TryGetComponent(out m_particleSystem);
         var color = MKUtil.GetColor(type);
         var main = m_particleSystem.main;

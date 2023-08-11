@@ -34,5 +34,8 @@ public class MKPlayerFormation : MonoBehaviour
         m_player.StartRearrange(m_rearrangeDuration);
         m_option1.StartRearrange(m_rearrangeDuration);
         m_option2.StartRearrange(m_rearrangeDuration);
+
+        // UI‚ğXV‚·‚éB
+        MKUIManager.Instance.RearrangeKobuta(m_player.Kobuta, m_option1.Kobuta, m_option2.Kobuta);
     }
 }
