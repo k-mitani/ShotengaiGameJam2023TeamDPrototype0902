@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,7 +10,7 @@ public class MKKobun : MonoBehaviour
     [SerializeField] private float hp = 3;
     [SerializeField] private Animator m_animator;
     [SerializeField] private SpriteRenderer m_renderer;
-    [SerializeField] private TextMeshPro m_text;
+    [SerializeField] private MKPopupText m_popupTextPrefab;
 
     private CircleCollider2D m_collider;
 
@@ -22,8 +22,12 @@ public class MKKobun : MonoBehaviour
 
     public void OnHit(MKPlayerBullet bullet)
     {
-        var damage = IsColorMatched(bullet) ? 3 : 1;
+        var favorite = IsColorMatched(bullet);
+
+        var damage = favorite ? 3 : 1;
         hp -= damage;
+        var pop = Instantiate(m_popupTextPrefab, transform.position, Quaternion.identity);
+        pop.SetText(favorite ? "+500🥰" : "+100😋");
         if (hp <= 0)
         {
             StartCoroutine(AfterDead());
@@ -32,7 +36,6 @@ public class MKKobun : MonoBehaviour
 
     private IEnumerator AfterDead()
     {
-        m_text.gameObject.SetActive(true);
         m_collider.enabled = false;
         var durationMax = 0.2f;
         var duration = 0f;
@@ -41,7 +44,6 @@ public class MKKobun : MonoBehaviour
             duration += Time.deltaTime;
             var rate = duration / durationMax;
             m_renderer.color = new Color(1, 1, 1, 1 - rate);
-            m_text.transform.position += Vector3.up * Time.deltaTime * 1f;
             yield return null;
         }
         Destroy(gameObject);
