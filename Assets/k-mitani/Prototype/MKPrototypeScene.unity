@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 109742780}
   - component: {fileID: 109742781}
   - component: {fileID: 109742782}
+  - component: {fileID: 109742783}
   m_Layer: 0
   m_Name: KobutaBlue
   m_TagString: Untagged
@@ -333,6 +334,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 2
   m_bulletPrefab: {fileID: 644884252690283876, guid: 52f97cb7f520dfc469e8b58ed7ee216d, type: 3}
+--- !u!58 &109742783
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109742779}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.04
 --- !u!1 &461274484
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +586,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2274633902138553896, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609311037378574931, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2737005229348369337, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -673,6 +698,14 @@ PrefabInstance:
     - target: {fileID: 6806305479957640075, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
       propertyPath: m_Name
       value: KobunRed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897601017818249826, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7214219593682662937, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
@@ -1077,6 +1110,7 @@ GameObject:
   - component: {fileID: 1894438392}
   - component: {fileID: 1894438393}
   - component: {fileID: 1894438394}
+  - component: {fileID: 1894438395}
   m_Layer: 0
   m_Name: KobutaRed
   m_TagString: Untagged
@@ -1165,6 +1199,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 0
   m_bulletPrefab: {fileID: 644884252690283876, guid: 52f97cb7f520dfc469e8b58ed7ee216d, type: 3}
+--- !u!58 &1894438395
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894438391}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.04
 --- !u!1001 &1977089518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1220,6 +1270,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: KobunRed (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6897601017818249826, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7214219593682662937, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
 --- !u!1 &2049044965
@@ -1233,6 +1291,7 @@ GameObject:
   - component: {fileID: 2049044966}
   - component: {fileID: 2049044967}
   - component: {fileID: 2049044968}
+  - component: {fileID: 2049044969}
   m_Layer: 0
   m_Name: KobutaGreen
   m_TagString: Untagged
@@ -1321,6 +1380,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 1
   m_bulletPrefab: {fileID: 644884252690283876, guid: 52f97cb7f520dfc469e8b58ed7ee216d, type: 3}
+--- !u!58 &2049044969
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049044965}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.04
 --- !u!1 &2108469055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1452,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2274633902138553896, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609311037378574931, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2737005229348369337, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1605,6 +1688,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2274633902138553896, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609311037378574931, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2737005229348369337, guid: 71ac31001e0d436498e650468c80ce00, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1709,6 +1800,14 @@ PrefabInstance:
     - target: {fileID: 6806305479957640075, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
       propertyPath: m_Name
       value: KobunRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897601017818249826, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7214219593682662937, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
