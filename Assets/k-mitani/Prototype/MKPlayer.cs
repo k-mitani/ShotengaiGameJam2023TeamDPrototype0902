@@ -29,24 +29,25 @@ public class MKPlayer : MKPlayerFormationUnit
     private void Move()
     {
         // è„â∫à⁄ìÆ
-        var newPosition = transform.position;
+        var moveAmount = Vector3.zero;
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            newPosition.y += m_speed * Time.deltaTime;
+            moveAmount += Vector3.up;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            newPosition.y -= m_speed * Time.deltaTime;
+            moveAmount -= Vector3.up;
         }
         // ç∂âEà⁄ìÆ
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            newPosition.x -= m_speed * Time.deltaTime;
+            moveAmount += Vector3.left;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            newPosition.x += m_speed * Time.deltaTime;
+            moveAmount += Vector3.right;
         }
+        var newPosition = transform.position + m_speed * Time.deltaTime * moveAmount.normalized;
 
         // à⁄ìÆîÕàÕÇêßå¿Ç∑ÇÈÅB
         newPosition.x = Mathf.Clamp(newPosition.x, m_xMin, m_xMax);
