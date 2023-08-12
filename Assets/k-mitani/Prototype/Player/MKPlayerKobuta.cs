@@ -25,6 +25,12 @@ public class MKPlayerKobuta : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // すでにダメージを受けていたら何もしない。
+        if (m_damaged)
+        {
+            return;
+        }
+
         Debug.Log("Kobuta Hit with " + collision.name);
         if (collision.TryGetComponent(out MKKobun kobun))
         {
