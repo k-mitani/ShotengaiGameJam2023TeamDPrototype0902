@@ -25,12 +25,30 @@ public class MKPlayerKobuta : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Kobuta Hit with " + collision.name);
         if (collision.TryGetComponent(out MKKobun kobun))
         {
-            Debug.Log("Hit!!");
-            m_damaged = true;
-            m_renderer.color = new Color(1, 1, 1, 0.25f);
-            MKUIManager.Instance.SetKobutaDamaged(Type, m_damaged);
+            OnDamage(kobun);
+        }
+        else if (collision.TryGetComponent(out MKKingKobutaFace king))
+        {
+            OnDamage(king);
+        }
+        else if (collision.TryGetComponent(out MKFireball fireball))
+        {
+            OnDamage(fireball);
+        }
+    }
+
+    private void OnDamage(MonoBehaviour obj)
+    {
+        Debug.Log("Hit!!");
+        m_damaged = true;
+        m_renderer.color = new Color(1, 1, 1, 0.25f);
+        MKUIManager.Instance.SetKobutaDamaged(Type, m_damaged);
+        if (obj is MKFireball f)
+        {
+            f.OnPlayerHit(this);
         }
     }
 }

@@ -37,6 +37,10 @@ public class MKKingKobutaAIBlue : MonoBehaviour
     {
         if (m_face.hp <= 0) return;
 
+        // やっぱりプレーヤーの横の位置はリアルタイムで取得する。
+        m_playerPosition = new Vector3(m_player.position.x, m_playerPosition.y, m_playerPosition.z);
+
+
         // 上下位置はプレーヤーに合わせる。
         // 現在位置
         var y = transform.position.y;
