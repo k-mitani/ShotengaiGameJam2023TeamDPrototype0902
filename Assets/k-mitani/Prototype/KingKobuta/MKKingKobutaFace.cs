@@ -11,6 +11,8 @@ public class MKKingKobutaFace : MonoBehaviour
     [SerializeField] private MKFollowObject[] m_necks;
     [SerializeField] private MKPopupText m_popupTextPrefab;
     [SerializeField] private Vector3 popupOffset;
+    [SerializeField] private Transform m_fireballStartPosition;
+    [SerializeField] private MKFireball m_fireballPrefab;
 
     private CircleCollider2D m_collider;
 
@@ -63,5 +65,11 @@ public class MKKingKobutaFace : MonoBehaviour
     private bool IsColorMatched(MKPlayerBullet bullet)
     {
         return (int)bullet.KobutaType == (int)m_colorType;
+    }
+
+    public void Shoot()
+    {
+        Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
+        //fireball.Initialize(m_colorType);
     }
 }

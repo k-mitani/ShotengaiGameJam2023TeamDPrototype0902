@@ -13,6 +13,7 @@ public class MKKingKobutaAIBlue : MonoBehaviour
     [SerializeField] private float m_NearDistanceMax = 2f;
     [SerializeField] private float m_FarDistanceMin = 5f;
     [SerializeField] private float m_playerPositionUpdateInterval = 3f;
+    [SerializeField] private float m_fireballInterval = 3f;
     
     private MKKingKobutaFace m_face;
     private Vector3 m_playerPosition;
@@ -21,6 +22,16 @@ public class MKKingKobutaAIBlue : MonoBehaviour
     {
         TryGetComponent(out m_face);
         StartCoroutine(UpdatePlayerPosition());
+        StartCoroutine(Fireball());
+    }
+
+    private IEnumerator Fireball()
+    {
+        while (true)
+        {
+            m_face.Shoot();
+            yield return new WaitForSeconds(m_fireballInterval);
+        }
     }
 
     private IEnumerator UpdatePlayerPosition()
