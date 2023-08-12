@@ -6,7 +6,7 @@ using UnityEngine;
 public class MKKingKobutaFace : MonoBehaviour
 {
     [SerializeField] private MKKobunColorType m_colorType;
-    [SerializeField] private float hp = 300;
+    [SerializeField] public float hp = 300;
     [SerializeField] private SpriteRenderer m_renderer;
     [SerializeField] private MKFollowObject[] m_necks;
     [SerializeField] private MKPopupText m_popupTextPrefab;
