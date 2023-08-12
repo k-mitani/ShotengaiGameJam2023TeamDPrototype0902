@@ -39,5 +39,10 @@ public class MKPlayerBullet : MonoBehaviour
             kobun.OnHit(this);
             Destroy(gameObject);
         }
+        else if (collision.TryGetComponent<MKKingKobutaFace>(out var king))
+        {
+            king.OnHit(this);
+            Destroy(gameObject);
+        }
     }
 }
