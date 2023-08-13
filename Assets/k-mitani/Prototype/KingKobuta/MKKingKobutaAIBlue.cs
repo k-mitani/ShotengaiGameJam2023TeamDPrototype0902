@@ -22,14 +22,17 @@ public class MKKingKobutaAIBlue : MonoBehaviour
     {
         TryGetComponent(out m_face);
         StartCoroutine(UpdatePlayerPosition());
-        StartCoroutine(Fireball());
+        StartCoroutine(FireFireball());
     }
 
-    private IEnumerator Fireball()
+    private IEnumerator FireFireball()
     {
         while (true)
         {
-            m_face.Shoot();
+            if (m_face.hp > 0)
+            {
+                m_face.Shoot();
+            }
             yield return new WaitForSeconds(m_fireballInterval);
         }
     }
@@ -38,7 +41,7 @@ public class MKKingKobutaAIBlue : MonoBehaviour
     {
         while (true)
         {
-            m_playerPosition = m_player.position;
+            m_playerPosition = m_player.position + Vector3.up * 1;
             yield return new WaitForSeconds(m_playerPositionUpdateInterval);
         }
     }

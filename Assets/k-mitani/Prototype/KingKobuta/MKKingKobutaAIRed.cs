@@ -7,6 +7,7 @@ public class MKKingKobutaAIRed : MonoBehaviour
     [SerializeField] private Vector3[] JunkaiPoints;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float waitTime = 1f;
+    [SerializeField] private float m_fireballInterval = 3f;
     private int currentIndex = 0;
     private float waitTimeCurrent = 0f;
     private bool isWaiting;
@@ -16,6 +17,19 @@ public class MKKingKobutaAIRed : MonoBehaviour
     void Start()
     {
         TryGetComponent(out m_face);
+        StartCoroutine(FireFireball());
+    }
+
+    private IEnumerator FireFireball()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(m_fireballInterval);
+            if (m_face.hp > 0)
+            {
+                m_face.Shoot3();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -45,7 +59,7 @@ public class MKKingKobutaAIRed : MonoBehaviour
         // 移動量
         var moveAmount = speed * Time.deltaTime * direction;
         // 目標に到着したかどうかの判定
-        if (distance < moveAmount.magnitude)
+        if (distance < 0.1f)
         {
             // 到着した場合
             // 目標点を次の点に変更

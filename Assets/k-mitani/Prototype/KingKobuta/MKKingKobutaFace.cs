@@ -13,6 +13,7 @@ public class MKKingKobutaFace : MonoBehaviour
     [SerializeField] private Vector3 popupOffset;
     [SerializeField] private Transform m_fireballStartPosition;
     [SerializeField] private MKFireball m_fireballPrefab;
+    [SerializeField] private MKPlayer m_player;
 
     private CircleCollider2D m_collider;
 
@@ -69,7 +70,25 @@ public class MKKingKobutaFace : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
+        var fb = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
+        fb.m_velocity = (m_player.transform.position - fb.transform.position).normalized;
         //fireball.Initialize(m_colorType);
+    }
+
+    public void Shoot3()
+    {
+        var velocity = (m_player.transform.position - m_fireballStartPosition.position).normalized;
+        var fb = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
+        fb.m_velocity = velocity;
+        var fb2 = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
+        fb2.m_velocity = Quaternion.Euler(0, 0, +30) * velocity;
+        var fb3 = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
+        fb3.m_velocity = Quaternion.Euler(0, 0, -30) * velocity;
+    }
+
+    public void ShootFast()
+    {
+        var fb = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
+        fb.m_velocity = (m_player.transform.position - fb.transform.position).normalized * 3;
     }
 }
