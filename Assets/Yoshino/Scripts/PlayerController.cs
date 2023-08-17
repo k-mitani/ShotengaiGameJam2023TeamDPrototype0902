@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_playerRb = null;
 
     private Launcher m_launcher = null;
+    
+    public Transform GetPlayerTf
+    {
+        get { return m_player.transform; }
+    }
     // Start is called before the first frame update
     void Start()
     {
