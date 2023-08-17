@@ -7,7 +7,6 @@ public class MKKingKobutaAIGreen : MonoBehaviour
 {
     [SerializeField] private Vector3[] JunkaiPoints;
     [SerializeField] private float speed = 1f;
-    [SerializeField] private float waitTime = 1f;
     [SerializeField] private float m_fireballInterval = 3f;
     [SerializeField] private float m_updatePositionInterval = 3f;
     [SerializeField] private MKKingKobutaFace[] m_otherFaces;

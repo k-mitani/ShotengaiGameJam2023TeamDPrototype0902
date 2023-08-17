@@ -786,7 +786,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JunkaiPoints: []
   speed: 1
-  waitTime: 1
   m_fireballInterval: 3
   m_updatePositionInterval: 3
   m_otherFaces:
@@ -938,8 +937,8 @@ MonoBehaviour:
   m_xMin: 1
   m_xMax: 6
   m_yMax: 0
-  m_NearDistanceMax: 4.5
-  m_FarDistanceMin: 5
+  m_NearDistanceMax: 5
+  m_FarDistanceMin: 6
   m_playerPositionUpdateInterval: 0.3
   m_fireballInterval: 3
 --- !u!1001 &3656023702569371562

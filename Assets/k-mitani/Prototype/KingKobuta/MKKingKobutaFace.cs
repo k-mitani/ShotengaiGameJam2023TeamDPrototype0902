@@ -27,7 +27,7 @@ public class MKKingKobutaFace : MonoBehaviour
         TryGetComponent(out m_collider);
     }
 
-    public void OnHit(MKPlayerBullet bullet)
+    public void OnHit(MKPlayerBullet bullet, float moveDistance)
     {
         var favorite = IsColorMatched(bullet);
 
@@ -37,6 +37,11 @@ public class MKKingKobutaFace : MonoBehaviour
 
         var score = favorite ? 500 : 100;
         if (bullet.IsWeak) score /= 2;
+        if (moveDistance > 1)
+        {
+            var adj = (10 - (moveDistance - 1)) / 10f;
+            score = (int)Mathf.Max(score * adj, 1);
+        }
         MKUIManager.Instance.AddScore(score);
 
         pop.SetText($"+{score}{(favorite ? "🥰" : "😋")}");

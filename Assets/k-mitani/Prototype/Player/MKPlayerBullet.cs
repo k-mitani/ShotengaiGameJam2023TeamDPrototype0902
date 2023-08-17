@@ -12,6 +12,7 @@ public class MKPlayerBullet : MonoBehaviour
     public MKKobutaType KobutaType { get; private set; }
     public bool IsWeak { get; private set; } = false;
     private bool m_isHit = false;
+    private Vector3 m_startPosition;
 
     private ParticleSystem m_particleSystem;
 
@@ -27,6 +28,8 @@ public class MKPlayerBullet : MonoBehaviour
         var main = m_particleSystem.main;
         main.startColor = color;
         m_bulletRenderer.sprite = m_bulletImages[Random.Range(0, m_bulletImages.Length)];
+
+        m_startPosition = transform.position;
     }
 
     void Update()
@@ -47,14 +50,16 @@ public class MKPlayerBullet : MonoBehaviour
         }
         else if (collision.TryGetComponent<MKKobun>(out var kobun))
         {
-            kobun.OnHit(this);
+            var moveDistance = Vector3.Distance(m_startPosition, transform.position);
+            kobun.OnHit(this, moveDistance);
             Destroy(gameObject);
             m_shooter.OnBulletDestroy(this);
             m_isHit = true;
         }
         else if (collision.TryGetComponent<MKKingKobutaFace>(out var king))
         {
-            king.OnHit(this);
+            var moveDistance = Vector3.Distance(m_startPosition, transform.position);
+            king.OnHit(this, moveDistance);
             Destroy(gameObject);
             m_shooter.OnBulletDestroy(this);
             m_isHit = true;

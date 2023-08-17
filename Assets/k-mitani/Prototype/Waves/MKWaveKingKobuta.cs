@@ -6,6 +6,7 @@ using UnityEngine;
 public class MKWaveKingKobuta : MKWaveBase
 {
     [SerializeField] private MKKingKobuta m_kingKobuta;
+    [SerializeField] private bool m_skipInitialMove = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +17,17 @@ public class MKWaveKingKobuta : MKWaveBase
     private IEnumerator MoveToX0()
     {
         m_kingKobuta.Pause();
-        while (transform.position.x > 0)
+        if (!m_skipInitialMove)
         {
-            yield return null;
-            transform.position += 1f * Time.deltaTime * Vector3.left;
+            while (transform.position.x > 0)
+            {
+                yield return null;
+                transform.position += 1f * Time.deltaTime * Vector3.left;
+            }
+        }
+        else
+        {
+            transform.position = new Vector3(0, transform.position.y, transform.position.z);
         }
         yield return new WaitForSeconds(1f);
         m_kingKobuta.Resume();
