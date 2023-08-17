@@ -15,14 +15,14 @@ public class MKWaveKingKobuta : MKWaveBase
 
     private IEnumerator MoveToX0()
     {
-        m_kingKobuta.ShouldPause = true;
+        m_kingKobuta.Pause();
         while (transform.position.x > 0)
         {
             yield return null;
             transform.position += 1f * Time.deltaTime * Vector3.left;
         }
         yield return new WaitForSeconds(1f);
-        m_kingKobuta.ShouldPause = false;
+        m_kingKobuta.Resume();
     }
 
     protected override bool IsWaveClear()

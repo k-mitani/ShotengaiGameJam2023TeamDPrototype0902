@@ -16,13 +16,12 @@ public class MKKingKobutaFace : MonoBehaviour
     [SerializeField] private MKKingKobuta m_kingKobuta;
 
     private MKPlayer m_player;
-    private CircleCollider2D m_collider;
+    public CircleCollider2D m_collider;
 
     public bool ShouldPause => m_kingKobuta.ShouldPause;
     public bool IsDead => hp <= 0;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         m_player = FindObjectOfType<MKPlayer>();
         TryGetComponent(out m_collider);
