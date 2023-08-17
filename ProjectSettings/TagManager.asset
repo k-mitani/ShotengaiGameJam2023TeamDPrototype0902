@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MKOutOfScreenWall
   - MKKobun
+  - MKDestroyEnemyWall
   layers:
   - Default
   - TransparentFX

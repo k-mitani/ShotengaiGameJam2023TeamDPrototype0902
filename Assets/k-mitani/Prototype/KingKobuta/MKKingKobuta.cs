@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MKKingKobuta : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [field: SerializeField] public bool ShouldPause { get; set; } = false;
+    [SerializeField] private MKKingKobutaFace[] m_faces;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool IsAllDead => m_faces.All(f => f.hp <= 0);
 }

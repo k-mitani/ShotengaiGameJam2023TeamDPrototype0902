@@ -9,7 +9,6 @@ public class MKKobun : MonoBehaviour
 {
     [SerializeField] private MKKobunColorType m_colorType;
     [SerializeField] private float hp = 3;
-    [SerializeField] private Animator m_animator;
     [SerializeField] private SpriteRenderer m_renderer;
     [SerializeField] private MKPopupText m_popupTextPrefab;
 
@@ -18,7 +17,10 @@ public class MKKobun : MonoBehaviour
     private void Awake()
     {
         TryGetComponent(out m_collider);
-        m_animator.SetInteger("KobunColorType", (int)m_colorType);
+    }
+
+    private void Start()
+    {
     }
 
     public void OnHit(MKPlayerBullet bullet)

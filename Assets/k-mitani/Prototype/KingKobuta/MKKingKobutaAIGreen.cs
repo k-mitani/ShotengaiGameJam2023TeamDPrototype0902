@@ -11,9 +11,6 @@ public class MKKingKobutaAIGreen : MonoBehaviour
     [SerializeField] private float m_fireballInterval = 3f;
     [SerializeField] private float m_updatePositionInterval = 3f;
     [SerializeField] private MKKingKobutaFace[] m_otherFaces;
-    private int currentIndex = 0;
-    private float waitTimeCurrent = 0f;
-    private bool isWaiting;
     private MKKingKobutaFace m_face;
     [SerializeField] private Vector3 m_targetPosition;
 
@@ -39,7 +36,9 @@ public class MKKingKobutaAIGreen : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(m_fireballInterval);
-            if (m_face.hp > 0)
+            if (m_face.ShouldPause) continue;
+
+            if (!m_face.IsDead)
             {
                 m_face.ShootFast();
             }
@@ -59,7 +58,7 @@ public class MKKingKobutaAIGreen : MonoBehaviour
                 .Select(_ => new Vector3(Random.Range(xMin, xMax), Random.Range(yMin, yMax), transform.position.z));
             m_cands = cands.ToArray();
             m_targetPosition = cands
-                .OrderByDescending(pos => Vector3.Distance(m_targetPosition, pos) / 2f + m_otherFaces.Select(f => f.hp > 0 ? Vector3.Distance(f.transform.position, pos) : 0).Sum())
+                .OrderByDescending(pos => Vector3.Distance(m_targetPosition, pos) / 2f + m_otherFaces.Select(f => !f.IsDead ? Vector3.Distance(f.transform.position, pos) : 0).Sum())
                 .First();
             yield return new WaitForSeconds(m_updatePositionInterval);
         }
@@ -68,7 +67,8 @@ public class MKKingKobutaAIGreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_face.hp <= 0) return;
+        if (m_face.ShouldPause) return;
+        if (m_face.IsDead) return;
 
         if (Vector3.Distance(m_targetPosition, transform.position) > 1)
         {

@@ -48,6 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57866e2aa34e0054eab58ecc7ce9670b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ShouldPause>k__BackingField: 0
+  m_faces:
+  - {fileID: 3656023702165318997}
+  - {fileID: 8386180127576211143}
+  - {fileID: 8386180127546448139}
 --- !u!1 &3656023701766883354
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +741,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
+      propertyPath: m_kingKobuta
+      value: 
+      objectReference: {fileID: 3656023701227489521}
+    - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
       propertyPath: m_fireballPrefab
       value: 
       objectReference: {fileID: 147533566089282901, guid: 76e1c6d1a96ef8344bfaf97868501888, type: 3}
@@ -784,6 +793,17 @@ MonoBehaviour:
   - {fileID: 3656023702165318997}
   - {fileID: 8386180127546448139}
   m_targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &8386180127576211143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
+  m_PrefabInstance: {fileID: 3656023702216528883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8386180127576211139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94037572fb340849a116a246cbc133e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3656023702253892671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -864,6 +884,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
+      propertyPath: m_kingKobuta
+      value: 
+      objectReference: {fileID: 3656023701227489521}
+    - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
       propertyPath: m_necks.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -910,7 +934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb57cb1a8fd41f47bb55082e50d2318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 0}
   m_speed: 1
   m_xMin: 1
   m_xMax: 6
@@ -1152,6 +1175,10 @@ PrefabInstance:
       propertyPath: m_player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
+      propertyPath: m_kingKobuta
+      value: 
+      objectReference: {fileID: 3656023701227489521}
     - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
       propertyPath: m_fireballPrefab
       value: 

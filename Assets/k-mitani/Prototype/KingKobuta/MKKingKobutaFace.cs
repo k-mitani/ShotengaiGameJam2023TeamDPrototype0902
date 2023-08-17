@@ -13,13 +13,18 @@ public class MKKingKobutaFace : MonoBehaviour
     [SerializeField] private Vector3 popupOffset;
     [SerializeField] private Transform m_fireballStartPosition;
     [SerializeField] private MKFireball m_fireballPrefab;
-    [SerializeField] private MKPlayer m_player;
+    [SerializeField] private MKKingKobuta m_kingKobuta;
 
+    private MKPlayer m_player;
     private CircleCollider2D m_collider;
+
+    public bool ShouldPause => m_kingKobuta.ShouldPause;
+    public bool IsDead => hp <= 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_player = FindObjectOfType<MKPlayer>();
         TryGetComponent(out m_collider);
     }
 
@@ -36,7 +41,7 @@ public class MKKingKobutaFace : MonoBehaviour
         MKUIManager.Instance.AddScore(score);
 
         pop.SetText($"+{score}{(favorite ? "🥰" : "😋")}");
-        if (hp <= 0)
+        if (IsDead)
         {
             StartCoroutine(AfterDead());
         }
