@@ -139,6 +139,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fe4f37147756ae74b88a96a94bd7ac79, type: 3}
   m_bulletRenderer: {fileID: 644884252107537808}
   m_speed: 10
+  m_popupTextPrefab: {fileID: 6496989976375936067, guid: 85fe333691dc57541a2e487fc05de521, type: 3}
+  popupOffset: {x: 0, y: 0.2, z: 0}
 --- !u!198 &2840319354464519060
 ParticleSystem:
   m_ObjectHideFlags: 0

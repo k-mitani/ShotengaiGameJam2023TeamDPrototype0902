@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,8 @@ public class MKPlayerBullet : MonoBehaviour
     [SerializeField] private Sprite[] m_bulletImages;
     [SerializeField] private SpriteRenderer m_bulletRenderer;
     [SerializeField] private float m_speed = 1;
+    [SerializeField] private MKPopupText m_popupTextPrefab;
+    [SerializeField] private Vector3 popupOffset;
 
     private MKPlayerKobuta m_shooter;
     public MKKobutaType KobutaType { get; private set; }
@@ -39,7 +41,7 @@ public class MKPlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // ‚·‚Å‚É’…’eˆ—Ï‚İ‚È‚ç‰½‚à‚µ‚È‚¢B
+        // ã™ã§ã«ç€å¼¾å‡¦ç†æ¸ˆã¿ãªã‚‰ä½•ã‚‚ã—ãªã„ã€‚
         if (m_isHit) return;
 
         if (collision.CompareTag("MKOutOfScreenWall"))
@@ -47,6 +49,16 @@ public class MKPlayerBullet : MonoBehaviour
             Destroy(gameObject);
             m_shooter.OnBulletDestroy(this);
             m_isHit = true;
+        }
+        else if (collision.CompareTag("MKDestroySandwich"))
+        {
+            Destroy(gameObject);
+            m_shooter.OnBulletDestroy(this);
+            m_isHit = true;
+            // æ¸›ç‚¹ã™ã‚‹ã€‚
+            var pop = Instantiate(m_popupTextPrefab, transform.position + popupOffset, Quaternion.identity);
+            pop.SetText("-100ğŸ˜­");
+            MKUIManager.Instance.AddScore(-100);
         }
         else if (collision.TryGetComponent<MKKobun>(out var kobun))
         {

@@ -1907,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &620161092
 Transform:
   m_ObjectHideFlags: 0
@@ -1937,6 +1937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_kingKobuta: {fileID: 1483480501}
+  m_skipInitialMove: 1
 --- !u!1 &681703884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,7 +2401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &840489578
 Transform:
   m_ObjectHideFlags: 0
