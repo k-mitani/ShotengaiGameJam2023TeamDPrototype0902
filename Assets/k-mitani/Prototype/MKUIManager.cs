@@ -24,7 +24,7 @@ public class MKUIManager : MonoBehaviour
 
     public void AddScore(int score)
     {
-        m_score = Math.Max(score, 0);
+        m_score = Math.Max(m_score + score, 0);
         UpdateScoreText();
     }
 
