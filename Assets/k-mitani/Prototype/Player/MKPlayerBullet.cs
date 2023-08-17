@@ -11,6 +11,7 @@ public class MKPlayerBullet : MonoBehaviour
     private MKPlayerKobuta m_shooter;
     public MKKobutaType KobutaType { get; private set; }
     public bool IsWeak { get; private set; } = false;
+    private bool m_isHit = false;
 
     private ParticleSystem m_particleSystem;
 
@@ -35,22 +36,28 @@ public class MKPlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Ç∑Ç≈Ç…íÖíeèàóùçœÇ›Ç»ÇÁâΩÇ‡ÇµÇ»Ç¢ÅB
+        if (m_isHit) return;
+
         if (collision.CompareTag("MKOutOfScreenWall"))
         {
             Destroy(gameObject);
             m_shooter.OnBulletDestroy(this);
+            m_isHit = true;
         }
         else if (collision.TryGetComponent<MKKobun>(out var kobun))
         {
             kobun.OnHit(this);
             Destroy(gameObject);
             m_shooter.OnBulletDestroy(this);
+            m_isHit = true;
         }
         else if (collision.TryGetComponent<MKKingKobutaFace>(out var king))
         {
             king.OnHit(this);
             Destroy(gameObject);
             m_shooter.OnBulletDestroy(this);
+            m_isHit = true;
         }
     }
 }
