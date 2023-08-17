@@ -42,6 +42,14 @@ public class MKKobun : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("MKDestroyEnemyWall"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private IEnumerator AfterDead()
     {
         m_collider.enabled = false;

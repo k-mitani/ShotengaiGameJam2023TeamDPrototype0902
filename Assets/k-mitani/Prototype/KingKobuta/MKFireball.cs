@@ -18,4 +18,12 @@ public class MKFireball : MonoBehaviour
         transform.position += Time.deltaTime * m_velocity;
         transform.Rotate(Vector3.back, m_rotationSpeed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("MKDestroyEnemyWall"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

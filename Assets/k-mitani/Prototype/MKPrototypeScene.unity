@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 137913367}
   m_Layer: 0
   m_Name: DestroyEnemyWall
-  m_TagString: MKOutOfScreenWall
+  m_TagString: MKDestroyEnemyWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1244,7 +1244,7 @@ GameObject:
   - component: {fileID: 442089987}
   m_Layer: 0
   m_Name: DestroyEnemyWall (1)
-  m_TagString: MKOutOfScreenWall
+  m_TagString: MKDestroyEnemyWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 616379821}
   m_Layer: 0
   m_Name: DestroyEnemyWall (2)
-  m_TagString: MKOutOfScreenWall
+  m_TagString: MKDestroyEnemyWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2400,7 +2400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &840489578
 Transform:
   m_ObjectHideFlags: 0
@@ -3332,7 +3332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12bdcf134d81f174587b6b37dcbc6d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_autoStart: 1
+  m_autoStart: 0
   m_startWave: {fileID: 0}
 --- !u!1001 &1181638101
 PrefabInstance:
