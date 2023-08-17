@@ -12,12 +12,11 @@ public class MKWaveBase : MonoBehaviour
         StartCoroutine(WaveClearCheckLoop());
     }
 
-    private IEnumerator WaveClearCheckLoop()
+    protected IEnumerator WaveClearCheckLoop()
     {
         while (true)
         {
             yield return new WaitForSeconds(1f);
-
             var clear = IsWaveClear();
             if (clear)
             {

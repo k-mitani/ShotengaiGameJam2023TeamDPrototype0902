@@ -558,7 +558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &130274905
 Transform:
   m_ObjectHideFlags: 0
@@ -1257,7 +1257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442089985}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.3, y: 23.4, z: 0.10517327}
+  m_LocalPosition: {x: -15.3, y: 14.7, z: 0.10517327}
   m_LocalScale: {x: 50, y: 5.334121, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1806,7 +1806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616379819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.4, y: -15.8, z: 0.10517327}
+  m_LocalPosition: {x: -16.4, y: -10.1, z: 0.10517327}
   m_LocalScale: {x: 50, y: 5.334121, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1907,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &620161092
 Transform:
   m_ObjectHideFlags: 0
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30B9\u30C6\u30FC\u30B8\u30AF\u30EA\u30A2!!!!!!"
+  m_text: "\u30B9\u30C6\u30FC\u30B8\u30AF\u30EA\u30A2!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ad15631833c34345889536a25852648, type: 2}
   m_sharedMaterial: {fileID: -5235231865207658863, guid: 3ad15631833c34345889536a25852648, type: 2}
@@ -2966,7 +2966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &944974402
 Transform:
   m_ObjectHideFlags: 0
@@ -2992,11 +2992,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 944974401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495cbb4058d005c4b974d67ed438b21f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5218c04978243314882a2b0760896f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_kingKobuta: {fileID: 0}
-  m_skipInitialMove: 1
 --- !u!4 &982086089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7270607011609861540, guid: 2439f33beab14b64bbd90b49caef3cfd, type: 3}

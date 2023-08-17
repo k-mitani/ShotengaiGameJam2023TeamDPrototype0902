@@ -12,6 +12,7 @@ public class MKWaveKingKobuta : MKWaveBase
     void Start()
     {
         StartCoroutine(MoveToX0());
+        StartCoroutine(WaveClearCheckLoop());
     }
 
     private IEnumerator MoveToX0()
