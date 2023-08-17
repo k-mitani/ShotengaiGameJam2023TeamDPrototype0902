@@ -745,6 +745,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3656023701227489521}
     - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
+      propertyPath: m_deadFaceImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 4ac718df373c7b84e9acbe6c4120e405, type: 3}
+    - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
       propertyPath: m_fireballPrefab
       value: 
       objectReference: {fileID: 147533566089282901, guid: 76e1c6d1a96ef8344bfaf97868501888, type: 3}
@@ -886,6 +890,10 @@ PrefabInstance:
       propertyPath: m_kingKobuta
       value: 
       objectReference: {fileID: 3656023701227489521}
+    - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
+      propertyPath: m_deadFaceImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b82226c123fe1844b785289fc4c6c8b, type: 3}
     - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
       propertyPath: m_necks.Array.size
       value: 2
@@ -1178,6 +1186,10 @@ PrefabInstance:
       propertyPath: m_kingKobuta
       value: 
       objectReference: {fileID: 3656023701227489521}
+    - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
+      propertyPath: m_deadFaceImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ac152f9a4ebae3418c3de8197376e67, type: 3}
     - target: {fileID: 5106374214803844404, guid: 2e2a5b503aaf2f841901a8b31c42ebe3, type: 3}
       propertyPath: m_fireballPrefab
       value: 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,9 +15,11 @@ public class MKKingKobutaFace : MonoBehaviour
     [SerializeField] private Transform m_fireballStartPosition;
     [SerializeField] private MKFireball m_fireballPrefab;
     [SerializeField] private MKKingKobuta m_kingKobuta;
+    [SerializeField] private Sprite m_deadFaceImage;
 
     private MKPlayer m_player;
-    public CircleCollider2D m_collider;
+    private SpriteRenderer m_spriteRenderer;
+    [NonSerialized] public CircleCollider2D m_collider;
 
     public bool ShouldPause => m_kingKobuta.ShouldPause;
     public bool IsDead => hp <= 0;
@@ -24,6 +27,7 @@ public class MKKingKobutaFace : MonoBehaviour
     private void Awake()
     {
         m_player = FindObjectOfType<MKPlayer>();
+        TryGetComponent(out m_spriteRenderer);
         TryGetComponent(out m_collider);
     }
 
@@ -57,6 +61,7 @@ public class MKKingKobutaFace : MonoBehaviour
         var neckRenderers = m_necks.Select(n => n.GetComponent<SpriteRenderer>()).ToArray();
         var durationMax = 0.2f;
         var duration = 0f;
+        m_spriteRenderer.sprite = m_deadFaceImage;
         while (duration < durationMax)
         {
             duration += Time.deltaTime;
