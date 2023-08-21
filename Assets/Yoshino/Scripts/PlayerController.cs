@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     //プレイヤー同士の間隔
     [SerializeField] private float m_distanceMin = 2f;
 
-    //プレイヤーListの先頭
-    private GameObject m_head = null;
     //プレイヤーと、子機のメンバ変数
     private GameObject m_player = null;
     private GameObject m_element1 = null;
@@ -23,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_playerRb = null;
 
     private Launcher m_launcher = null;
-    
+
+    private LifeUIManager m_lifeUIManager = null;
     public Transform GetPlayerTf
     {
         get { return m_player.transform; }
@@ -47,6 +46,8 @@ public class PlayerController : MonoBehaviour
         m_player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 3;
         m_element1.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
         m_element2.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
+
+        m_lifeUIManager = FindObjectOfType<LifeUIManager>();
     }
 
     // Update is called once per frame
@@ -95,14 +96,27 @@ public class PlayerController : MonoBehaviour
     //操作キャラクターを変更
     private void PlayerChange()
     {
-        m_head = m_pigs[0];
-        m_pigs.Remove(m_head);
-        m_pigs.Add(m_head);
+        //先頭の要素のGameObjectと座標を代入
+        GameObject head = m_pigs[0];
+        Vector2 playerPos = head.transform.position;
+        //先頭のGameObjectを最後尾に代入
+        m_pigs.Remove(head);
+        m_pigs.Add(head);
+        for(int i = 0; i < m_pigs.Count; i++)
+        {
+            if (m_pigs[i] ==enabled)
+            {
+
+            }
+        }
+        
         //メンバ変数に代入
         m_player = m_pigs[0];
         m_element1 = m_pigs[1];
         m_element2 = m_pigs[2];
         m_playerRb = m_player.GetComponent<Rigidbody2D>();
+        //前のプレイヤーの座標を、変更後のプレイヤーに適用
+        m_player.transform.position = playerPos;
         //プレイヤーと子機のタグを変更
         m_player.tag = "Player";
         m_element1.tag = m_element2.tag = "Untagged";
@@ -114,6 +128,8 @@ public class PlayerController : MonoBehaviour
         m_player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 3;
         m_element1.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
         m_element2.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
+
+        m_lifeUIManager.LifeUISetUp();
     }
 
     //追従するオブジェクト、追従するターゲット
