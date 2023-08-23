@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class MKUIManager : MonoBehaviour
     [SerializeField] private RawImage m_lifeGreen;
     [SerializeField] private RawImage m_lifeBLue;
     private RawImage[] m_lifes;
+    private CinemachineImpulseSource m_impulseSource;
 
     private int m_score = 0;
 
@@ -40,10 +42,16 @@ public class MKUIManager : MonoBehaviour
         m_lifes[(int)type].color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
     }
 
+    public void ShakeCamera()
+    {
+        m_impulseSource.GenerateImpulse();
+    }
+
     void Awake()
     {
         Instance = this;
         m_lifes = new RawImage[] { m_lifeRed, m_lifeGreen, m_lifeBLue };
+        TryGetComponent(out m_impulseSource);
     }
 
     // Start is called before the first frame update

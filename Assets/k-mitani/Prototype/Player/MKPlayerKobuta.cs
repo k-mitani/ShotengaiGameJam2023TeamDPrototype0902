@@ -78,6 +78,7 @@ public class MKPlayerKobuta : MonoBehaviour
         IsDamaged = true;
         m_renderer.color = new Color(1, 1, 1, 0.25f);
         MKUIManager.Instance.SetKobutaDamaged(Type, IsDamaged);
+        MKUIManager.Instance.ShakeCamera();
         if (obj is MKFireball f)
         {
             f.OnPlayerHit(this);
