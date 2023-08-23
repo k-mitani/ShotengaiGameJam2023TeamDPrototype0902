@@ -563,8 +563,8 @@ MonoBehaviour:
   - {fileID: 1022461783}
   m_TargetPos:
   - {x: 60, y: -85, z: 0}
-  - {x: 85, y: -54, z: 0}
   - {x: 25, y: -54, z: 0}
+  - {x: 85, y: -54, z: 0}
   m_imageMoveTime: 0.25
 --- !u!1 &519420028
 GameObject:

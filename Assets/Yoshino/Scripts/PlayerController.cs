@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     {
         get { return m_player.transform; }
     }
+    public List<GameObject> GetPigs
+    {
+        get { return m_pigs; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +74,7 @@ public class PlayerController : MonoBehaviour
         FollowUp(m_element1, m_player);
         FollowUp(m_element2, m_element1);
     }
-        
+
     //プレイヤーの移動処理
     private void PlayerMove()
     {
@@ -96,40 +100,46 @@ public class PlayerController : MonoBehaviour
     //操作キャラクターを変更
     private void PlayerChange()
     {
-        //先頭の要素のGameObjectと座標を代入
-        GameObject head = m_pigs[0];
-        Vector2 playerPos = head.transform.position;
-        //先頭のGameObjectを最後尾に代入
-        m_pigs.Remove(head);
-        m_pigs.Add(head);
-        for(int i = 0; i < m_pigs.Count; i++)
+        int i = 0;
+        //do while文でプレイヤー変更を少なくとも１回は通るようにする
+        do
         {
-            if (m_pigs[i] ==enabled)
+            //先頭の要素のGameObjectと座標を代入
+            GameObject head = m_pigs[0];
+            Vector2 playerPos = head.transform.position;
+            //先頭のGameObjectを最後尾に代入
+            m_pigs.Remove(head);
+            m_pigs.Add(head);
+            //メンバ変数に代入
+            m_player = m_pigs[0];
+            m_element1 = m_pigs[1];
+            m_element2 = m_pigs[2];
+            m_playerRb = m_player.GetComponent<Rigidbody2D>();
+            //前のプレイヤーの座標を、変更後のプレイヤーに適用
+            m_player.transform.position = playerPos;
+            //プレイヤーと子機のタグを変更
+            m_player.tag = "Player";
+            m_element1.tag = m_element2.tag = "Untagged";
+            //プレイヤーのlayerをPlayerにそれ以外をその後ろに変更
+            m_player.layer = 7;
+            m_pigs[1].layer = 8;
+            m_pigs[2].layer = 9;
+            //Playerを最前面に、子機をその後ろに映るようにする
+            m_player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 3;
+            m_element1.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
+            m_element2.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
+            //lifeUIを動かす関数
+            m_lifeUIManager.LifeUISetUp();
+            //無限ループ回避用
+            if (i >= 3)
             {
-
+                break;
             }
-        }
-        
-        //メンバ変数に代入
-        m_player = m_pigs[0];
-        m_element1 = m_pigs[1];
-        m_element2 = m_pigs[2];
-        m_playerRb = m_player.GetComponent<Rigidbody2D>();
-        //前のプレイヤーの座標を、変更後のプレイヤーに適用
-        m_player.transform.position = playerPos;
-        //プレイヤーと子機のタグを変更
-        m_player.tag = "Player";
-        m_element1.tag = m_element2.tag = "Untagged";
-        //プレイヤーのlayerをPlayerにそれ以外をその後ろに変更
-        m_player.layer = 7;
-        m_pigs[1].layer = 8;
-        m_pigs[2].layer = 9;
-        //Playerを最前面に、子機をその後ろに映るようにする
-        m_player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 3;
-        m_element1.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
-        m_element2.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
+            i++;
+            //playerが(非アクティブであればループする)
+        } while (!m_player.activeSelf);
 
-        m_lifeUIManager.LifeUISetUp();
+
     }
 
     //追従するオブジェクト、追従するターゲット
