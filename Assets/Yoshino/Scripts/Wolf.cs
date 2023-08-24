@@ -15,7 +15,7 @@ public class Wolf : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        m_playerController = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class Wolf : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
     }
 
     private void Damage(BulletType type)

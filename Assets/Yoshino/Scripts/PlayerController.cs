@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     //プレイヤー同士の間隔
     [SerializeField] private float m_distanceMin = 2f;
 
-    //プレイヤーListの先頭
-    private GameObject m_head = null;
     //プレイヤーと、子機のメンバ変数
     private GameObject m_player = null;
     private GameObject m_element1 = null;
@@ -23,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_playerRb = null;
 
     private Launcher m_launcher = null;
-    
+
+    private LifeUIManager m_lifeUIManager = null;
     public Transform GetPlayerTf
     {
         get { return m_player.transform; }
@@ -51,6 +50,8 @@ public class PlayerController : MonoBehaviour
         m_player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 3;
         m_element1.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
         m_element2.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
+
+        m_lifeUIManager = FindObjectOfType<LifeUIManager>();
     }
 
     // Update is called once per frame
@@ -99,7 +100,6 @@ public class PlayerController : MonoBehaviour
     //操作キャラクターを変更
     private void PlayerChange()
     {
-<<<<<<< HEAD
         int i = 0;
         //do while文でプレイヤー変更を少なくとも１回は通るようにする
         do
@@ -140,27 +140,6 @@ public class PlayerController : MonoBehaviour
         } while (!m_player.activeSelf);
 
 
-=======
-        m_head = m_pigs[0];
-        m_pigs.Remove(m_head);
-        m_pigs.Add(m_head);
-        //メンバ変数に代入
-        m_player = m_pigs[0];
-        m_element1 = m_pigs[1];
-        m_element2 = m_pigs[2];
-        m_playerRb = m_player.GetComponent<Rigidbody2D>();
-        //プレイヤーと子機のタグを変更
-        m_player.tag = "Player";
-        m_element1.tag = m_element2.tag = "Untagged";
-        //プレイヤーのlayerをPlayerにそれ以外をその後ろに変更
-        m_player.layer = 7;
-        m_pigs[1].layer = 8;
-        m_pigs[2].layer = 9;
-        //Playerを最前面に、子機をその後ろに映るようにする
-        m_player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 3;
-        m_element1.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
-        m_element2.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
->>>>>>> parent of d92edd1 (lifeUI縺ｮ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繧貞ｮ溯｣�)
     }
 
     //追従するオブジェクト、追従するターゲット
