@@ -38,8 +38,6 @@ public class LifeUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         if (m_isMoving)
         {
             //経過時間が画像移動時間を超えるかの判定
@@ -47,9 +45,9 @@ public class LifeUIManager : MonoBehaviour
             {
                 //画像の移動の線形補間処理
                 float alpha = m_elapsedTime / m_imageMoveTime;
-                m_element0RectTf.anchoredPosition = Vector3.Lerp(m_TargetPos[2], m_TargetPos[0], alpha);
-                m_element1RectTf.anchoredPosition = Vector3.Lerp(m_TargetPos[0], m_TargetPos[1], alpha);
-                m_element2RectTf.anchoredPosition = Vector3.Lerp(m_TargetPos[1], m_TargetPos[2], alpha);
+                m_element0RectTf.anchoredPosition = Vector3.Lerp(m_TargetPos[1], m_TargetPos[0], alpha);
+                m_element1RectTf.anchoredPosition = Vector3.Lerp(m_TargetPos[2], m_TargetPos[1], alpha);
+                m_element2RectTf.anchoredPosition = Vector3.Lerp(m_TargetPos[0], m_TargetPos[2], alpha);
                 //画像の拡大の処理
                 m_element0Image.transform.localScale = Vector3.Lerp(new Vector3(1.5f, 1.5f, 1.5f), new Vector3(2, 2, 2), alpha);
                 //経過時間を計算
@@ -61,8 +59,6 @@ public class LifeUIManager : MonoBehaviour
                 m_element0RectTf.anchoredPosition = m_TargetPos[0];
                 m_element1RectTf.anchoredPosition = m_TargetPos[1];
                 m_element2RectTf.anchoredPosition = m_TargetPos[2];
-
-
 
                 m_element0Image.transform.localScale = new Vector3(2, 2, 2);
 
@@ -85,20 +81,16 @@ public class LifeUIManager : MonoBehaviour
         m_element1RectTf.anchoredPosition = m_TargetPos[1];
         m_element2RectTf.anchoredPosition = m_TargetPos[2];
         //リストの先頭の要素を最後尾に入れる
-        //Canvas headCanvaes = m_canvaes[0];
-        //m_canvaes.Remove(headCanvaes);
-        //m_canvaes.Add(headCanvaes);
-        Vector3 headVec = m_TargetPos[0];
-        m_TargetPos.Remove(headVec);
-        m_TargetPos.Add(headVec);
+        Canvas headCanvaes = m_canvaes[0];
+        m_canvaes.Remove(headCanvaes);
+        m_canvaes.Add(headCanvaes);
         //メンバ変数に代入
-        //m_element0Image = m_canvaes[0].GetComponentInChildren<Image>();
-        //m_element1Image = m_canvaes[1].GetComponentInChildren<Image>();
-        //m_element2Image = m_canvaes[2].GetComponentInChildren<Image>();
-        //m_element0RectTf = m_element0Image.rectTransform;
-        //m_element1RectTf = m_element1Image.rectTransform;
-        //m_element2RectTf = m_element2Image.rectTransform;
-
+        m_element0Image = m_canvaes[0].GetComponentInChildren<Image>();
+        m_element1Image = m_canvaes[1].GetComponentInChildren<Image>();
+        m_element2Image = m_canvaes[2].GetComponentInChildren<Image>();
+        m_element0RectTf = m_element0Image.rectTransform;
+        m_element1RectTf = m_element1Image.rectTransform;
+        m_element2RectTf = m_element2Image.rectTransform;
         //element0以外の画像を小さくする
         m_element1Image.transform.localScale = m_element2Image.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         //画像の描画順を先頭の画像が最前面になるよう変更

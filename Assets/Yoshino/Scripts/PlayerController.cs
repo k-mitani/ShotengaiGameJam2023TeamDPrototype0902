@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     //プレイヤーのList
     [SerializeField] private List<GameObject> m_pigs = new List<GameObject>();
-    //弾オブジェクト
-    [SerializeField] private GameObject m_bullet = null;
     //移動速度
     [SerializeField] private float m_speed = 5f;
     //プレイヤー同士の間隔
@@ -17,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private GameObject m_player = null;
     private GameObject m_element1 = null;
     private GameObject m_element2 = null;
+
 
     private Rigidbody2D m_playerRb = null;
 
@@ -136,8 +135,8 @@ public class PlayerController : MonoBehaviour
                 break;
             }
             i++;
-            //playerが(非アクティブであればループする)
-        } while (!m_player.activeSelf);
+            //playerが(非アクティブかダメージ中であればループする)
+        } while (!m_player.activeSelf || m_player.GetComponent<PlayerState>().GetIsDamage);
 
 
     }

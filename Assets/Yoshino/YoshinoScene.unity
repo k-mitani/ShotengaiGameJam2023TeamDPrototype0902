@@ -563,8 +563,8 @@ MonoBehaviour:
   - {fileID: 1022461783}
   m_TargetPos:
   - {x: 60, y: -85, z: 0}
-  - {x: 25, y: -54, z: 0}
   - {x: 85, y: -54, z: 0}
+  - {x: 25, y: -54, z: 0}
   m_imageMoveTime: 0.25
 --- !u!1 &519420028
 GameObject:
@@ -1537,6 +1537,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276009305285082273, guid: d80b7cae1034a9440ac5ca7e0b8085bb, type: 3}
+      propertyPath: m_uiImage
+      value: 
+      objectReference: {fileID: 1290541677}
+    - target: {fileID: 3276009305285082273, guid: d80b7cae1034a9440ac5ca7e0b8085bb, type: 3}
+      propertyPath: m_damagedColor.b
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276009305285082273, guid: d80b7cae1034a9440ac5ca7e0b8085bb, type: 3}
+      propertyPath: m_damagedColor.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276009305285082273, guid: d80b7cae1034a9440ac5ca7e0b8085bb, type: 3}
+      propertyPath: m_damagedColor.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80b7cae1034a9440ac5ca7e0b8085bb, type: 3}
 --- !u!1001 &2699392371297445147
@@ -1593,6 +1609,22 @@ PrefabInstance:
     - target: {fileID: 2699392372175359091, guid: e87fa26f58ff8fa4891facaaf15714f4, type: 3}
       propertyPath: m_Name
       value: Player_Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483244670763024888, guid: e87fa26f58ff8fa4891facaaf15714f4, type: 3}
+      propertyPath: m_uiImage
+      value: 
+      objectReference: {fileID: 586487715}
+    - target: {fileID: 5483244670763024888, guid: e87fa26f58ff8fa4891facaaf15714f4, type: 3}
+      propertyPath: m_damagedColor.b
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483244670763024888, guid: e87fa26f58ff8fa4891facaaf15714f4, type: 3}
+      propertyPath: m_damagedColor.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483244670763024888, guid: e87fa26f58ff8fa4891facaaf15714f4, type: 3}
+      propertyPath: m_damagedColor.r
+      value: 0.5019608
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e87fa26f58ff8fa4891facaaf15714f4, type: 3}
@@ -1729,6 +1761,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1481261180582811358, guid: 15eca89e37e786441817d760eb0ae72c, type: 3}
+      propertyPath: m_uiImage
+      value: 
+      objectReference: {fileID: 1366762443}
+    - target: {fileID: 1481261180582811358, guid: 15eca89e37e786441817d760eb0ae72c, type: 3}
+      propertyPath: m_damagedColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481261180582811358, guid: 15eca89e37e786441817d760eb0ae72c, type: 3}
+      propertyPath: m_damagedColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481261180582811358, guid: 15eca89e37e786441817d760eb0ae72c, type: 3}
+      propertyPath: m_damagedColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7701761545605797644, guid: 15eca89e37e786441817d760eb0ae72c, type: 3}
       propertyPath: m_RootOrder
       value: 7
