@@ -11,11 +11,24 @@ public class MKSoundManager : MonoBehaviour
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioClip bgm1;
     [SerializeField] private AudioClip bgm2;
+
     [SerializeField] private AudioClip sePlayerShoot;
+    public void PlaySePlayerShoot() => PlaySe(sePlayerShoot);
+
     [SerializeField] private AudioClip sePlayerDamaged;
+    public void PlaySePlayerDamaged() => PlaySe(sePlayerDamaged);
+
     [SerializeField] private AudioClip seEnemyDamaged;
+    public void PlaySeEnemyDamaged() => PlaySe(seEnemyDamaged);
+
     [SerializeField] private AudioClip seKingKobutaShoot;
+    public void PlaySeKingKobutaShoot() => PlaySe(seKingKobutaShoot);
+
     [SerializeField] private AudioClip seSandwichBurned;
+    public void PlaySeSandwichBurned() => PlaySe(seSandwichBurned);
+
+    [SerializeField] private AudioClip sePlayerFormationChanged;
+    public void PlaySePlayerFormationChanged() => PlaySe(sePlayerFormationChanged);
 
     private void Awake()
     {
@@ -51,12 +64,6 @@ public class MKSoundManager : MonoBehaviour
     {
         bgmSource.Stop();
     }
-
-    public void PlaySePlayerShoot() => PlaySe(sePlayerShoot);
-    public void PlaySePlayerDamaged() => PlaySe(sePlayerDamaged);
-    public void PlaySeEnemyDamaged() => PlaySe(seEnemyDamaged);
-    public void PlaySeKingKobutaShoot() => PlaySe(seKingKobutaShoot);
-    public void PlaySeSandwichBurned() => PlaySe(seSandwichBurned);
 
     private void PlaySe(AudioClip clip)
     {

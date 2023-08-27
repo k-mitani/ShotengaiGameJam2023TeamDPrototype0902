@@ -100,6 +100,7 @@ public class MKPlayer : MKPlayerFormationUnit
 
         // UI‚ğXV‚·‚éB
         MKUIManager.Instance.RearrangeKobuta(Kobuta, m_option1.Kobuta, m_option2.Kobuta);
+        MKSoundManager.Instance.PlaySePlayerFormationChanged();
     }
 
     private void Kobuta_Damaged(object sender, EventArgs e)
