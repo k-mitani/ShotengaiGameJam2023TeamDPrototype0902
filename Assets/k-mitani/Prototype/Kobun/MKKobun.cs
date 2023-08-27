@@ -9,7 +9,6 @@ public class MKKobun : MonoBehaviour
 {
     [SerializeField] private MKKobunColorType m_colorType;
     [SerializeField] private float hp = 3;
-    [SerializeField] private Animator m_animator;
     [SerializeField] private SpriteRenderer m_renderer;
     [SerializeField] private MKPopupText m_popupTextPrefab;
 
@@ -18,10 +17,13 @@ public class MKKobun : MonoBehaviour
     private void Awake()
     {
         TryGetComponent(out m_collider);
-        m_animator.SetInteger("KobunColorType", (int)m_colorType);
     }
 
-    public void OnHit(MKPlayerBullet bullet)
+    private void Start()
+    {
+    }
+
+    public void OnHit(MKPlayerBullet bullet, float moveDistance)
     {
         var favorite = IsColorMatched(bullet);
 
@@ -31,12 +33,26 @@ public class MKKobun : MonoBehaviour
 
         var score = favorite ? 500 : 100;
         if (bullet.IsWeak) score /= 2;
+        if (moveDistance > 1)
+        {
+            var adj = (10 - (moveDistance - 1)) / 10f;
+            score = (int) Mathf.Max(score * adj, 1);
+        }
         MKUIManager.Instance.AddScore(score);
+        MKSoundManager.Instance.PlaySeEnemyDamaged();
 
         pop.SetText($"+{score}{(favorite ? "🥰" : "😋")}");
         if (hp <= 0)
         {
             StartCoroutine(AfterDead());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("MKDestroyEnemyWall"))
+        {
+            Destroy(gameObject);
         }
     }
 

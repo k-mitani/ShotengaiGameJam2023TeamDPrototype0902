@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,17 +14,24 @@ public class MKKingKobutaFace : MonoBehaviour
     [SerializeField] private Vector3 popupOffset;
     [SerializeField] private Transform m_fireballStartPosition;
     [SerializeField] private MKFireball m_fireballPrefab;
-    [SerializeField] private MKPlayer m_player;
+    [SerializeField] private MKKingKobuta m_kingKobuta;
+    [SerializeField] private Sprite m_deadFaceImage;
 
-    private CircleCollider2D m_collider;
+    private MKPlayer m_player;
+    private SpriteRenderer m_spriteRenderer;
+    [NonSerialized] public CircleCollider2D m_collider;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool ShouldPause => m_kingKobuta.ShouldPause;
+    public bool IsDead => hp <= 0;
+
+    private void Awake()
     {
+        m_player = FindObjectOfType<MKPlayer>();
+        TryGetComponent(out m_spriteRenderer);
         TryGetComponent(out m_collider);
     }
 
-    public void OnHit(MKPlayerBullet bullet)
+    public void OnHit(MKPlayerBullet bullet, float moveDistance)
     {
         var favorite = IsColorMatched(bullet);
 
@@ -33,10 +41,16 @@ public class MKKingKobutaFace : MonoBehaviour
 
         var score = favorite ? 500 : 100;
         if (bullet.IsWeak) score /= 2;
+        if (moveDistance > 1)
+        {
+            var adj = (10 - (moveDistance - 1)) / 10f;
+            score = (int)Mathf.Max(score * adj, 1);
+        }
         MKUIManager.Instance.AddScore(score);
+        MKSoundManager.Instance.PlaySeEnemyDamaged();
 
         pop.SetText($"+{score}{(favorite ? "🥰" : "😋")}");
-        if (hp <= 0)
+        if (IsDead)
         {
             StartCoroutine(AfterDead());
         }
@@ -48,6 +62,7 @@ public class MKKingKobutaFace : MonoBehaviour
         var neckRenderers = m_necks.Select(n => n.GetComponent<SpriteRenderer>()).ToArray();
         var durationMax = 0.2f;
         var duration = 0f;
+        m_spriteRenderer.sprite = m_deadFaceImage;
         while (duration < durationMax)
         {
             duration += Time.deltaTime;
