@@ -76,6 +76,7 @@ public class MKPlayerKobuta : MonoBehaviour
         bullet.Initialize(this);
         m_bullets.Add(bullet);
         m_autoShootInterval = AutoShootIntervalMax;
+        MKSoundManager.Instance.PlaySePlayerShoot();
     }
 
     public void OnBulletDestroy(MKPlayerBullet bullet)
@@ -116,6 +117,7 @@ public class MKPlayerKobuta : MonoBehaviour
             m_renderer.color = new Color(1, 1, 1, 0.25f);
             MKUIManager.Instance.SetKobutaDamaged(Type, IsDamaged);
             MKUIManager.Instance.ShakeCamera();
+            MKSoundManager.Instance.PlaySePlayerDamaged();
             Damaged?.Invoke(this, EventArgs.Empty);
         }
         // ファイアーボールは無敵時間中でも接触したら消せるようにしてみる。

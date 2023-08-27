@@ -59,6 +59,7 @@ public class MKPlayerBullet : MonoBehaviour
             var pop = Instantiate(m_popupTextPrefab, transform.position + popupOffset, Quaternion.identity);
             pop.SetText("-100😭");
             MKUIManager.Instance.AddScore(-100);
+            MKSoundManager.Instance.PlaySeSandwichBurned();
         }
         else if (collision.TryGetComponent<MKKobun>(out var kobun))
         {

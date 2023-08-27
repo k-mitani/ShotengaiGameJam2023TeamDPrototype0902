@@ -39,6 +39,7 @@ public class MKKobun : MonoBehaviour
             score = (int) Mathf.Max(score * adj, 1);
         }
         MKUIManager.Instance.AddScore(score);
+        MKSoundManager.Instance.PlaySeEnemyDamaged();
 
         pop.SetText($"+{score}{(favorite ? "🥰" : "😋")}");
         if (hp <= 0)
