@@ -17,7 +17,7 @@ public class MKUIManager : MonoBehaviour
     private RawImage[] m_lifes;
     private CinemachineImpulseSource m_impulseSource;
 
-    private int m_score = 0;
+    [NonSerialized] public int m_score = 0;
 
     private void UpdateScoreText()
     {

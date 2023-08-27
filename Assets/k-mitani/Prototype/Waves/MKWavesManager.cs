@@ -46,5 +46,10 @@ public class MKWavesManager : MonoBehaviour
         {
             Debug.Log("ƒQ[ƒ€ƒNƒŠƒA");
         }
+
+        if (wave.name == "WaveBoss")
+        {
+            naichilab.RankingLoader.Instance.SendScoreAndShowRanking(MKUIManager.Instance.m_score);
+        }
     }
 }

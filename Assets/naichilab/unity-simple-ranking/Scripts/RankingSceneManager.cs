@@ -30,12 +30,14 @@ namespace naichilab
 
         private string ObjectID
         {
-            get { return _objectid ?? (_objectid = PlayerPrefs.GetString(BoardIdPlayerPrefsKey, null)); }
+            //get { return _objectid ?? (_objectid = PlayerPrefs.GetString(BoardIdPlayerPrefsKey, null)); }
+            get { return _objectid; }
             set
             {
                 if (_objectid == value)
                     return;
-                PlayerPrefs.SetString(BoardIdPlayerPrefsKey, _objectid = value);
+                //PlayerPrefs.SetString(BoardIdPlayerPrefsKey, _objectid = value);
+                _objectid = value;
             }
         }
 
@@ -122,12 +124,12 @@ namespace naichilab
                 if (_board.Order == ScoreOrder.OrderByAscending)
                 {
                     //数値が低い方が高スコア
-                    sendScoreButton.interactable = _lastScore.Value < highScore.Value;
+                    sendScoreButton.interactable = true; // _lastScore.Value < highScore.Value;
                 }
                 else
                 {
                     //数値が高い方が高スコア
-                    sendScoreButton.interactable = highScore.Value < _lastScore.Value;
+                    sendScoreButton.interactable = true; // highScore.Value < _lastScore.Value;
                 }
 
                 Debug.Log(string.Format("登録済みスコア:{0} 今回スコア:{1} ハイスコア更新:{2}", highScore.Value, _lastScore.Value,
