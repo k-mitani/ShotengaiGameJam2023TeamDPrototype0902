@@ -17,7 +17,7 @@ public class MKPlayerFormationUnit : MonoBehaviour
     /// </summary>
     public bool IsRearranging { get; set; } = false;
 
-    private void Start()
+    protected virtual void Start()
     {
         m_initialScale = Kobuta.transform.localScale;
     }

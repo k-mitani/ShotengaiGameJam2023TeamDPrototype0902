@@ -18,6 +18,41 @@ public class MKPlayerKobuta : MonoBehaviour
     private List<MKPlayerBullet> m_bullets = new List<MKPlayerBullet>();
     private float m_autoShootInterval = 0f;
 
+    private float m_damagedMutekiDurationMax = 2.0f;
+    private float m_damagedMutekiDuration = 0f;
+    private bool m_isInDamagedMuteki = false;
+    public event EventHandler Damaged;
+    public void StartDamagedMuteki()
+    {
+        StartCoroutine(DamagedMutekiLoop());
+    }
+
+    IEnumerator DamagedMutekiLoop()
+    {
+        var originalColor = m_renderer.color;
+        var color1 = new Color(1, 1, 1, originalColor.a * 1);
+        var color2 = new Color(1, 1, 1, originalColor.a * 0.5f);
+        m_renderer.color = color1;
+
+        m_isInDamagedMuteki = true;
+        m_damagedMutekiDuration = m_damagedMutekiDurationMax;
+        var blinkDurationMax = 0.1f;
+        var blinkDuration = blinkDurationMax;
+        while (m_damagedMutekiDuration > 0)
+        {
+            m_damagedMutekiDuration -= Time.deltaTime;
+            blinkDuration -= Time.deltaTime;
+            if (blinkDuration <= 0)
+            {
+                blinkDuration = blinkDurationMax;
+                if (m_renderer.color == color1) m_renderer.color = color2;
+                else m_renderer.color = color1;
+            }
+            yield return null;
+        }
+        m_isInDamagedMuteki = false;
+        m_renderer.color = originalColor;
+    }
 
     private void Awake()
     {
@@ -75,10 +110,15 @@ public class MKPlayerKobuta : MonoBehaviour
     private void OnDamage(MonoBehaviour obj)
     {
         Debug.Log("Hit!!");
-        IsDamaged = true;
-        m_renderer.color = new Color(1, 1, 1, 0.25f);
-        MKUIManager.Instance.SetKobutaDamaged(Type, IsDamaged);
-        MKUIManager.Instance.ShakeCamera();
+        if (!m_isInDamagedMuteki)
+        {
+            IsDamaged = true;
+            m_renderer.color = new Color(1, 1, 1, 0.25f);
+            MKUIManager.Instance.SetKobutaDamaged(Type, IsDamaged);
+            MKUIManager.Instance.ShakeCamera();
+            Damaged?.Invoke(this, EventArgs.Empty);
+        }
+        // ファイアーボールは無敵時間中でも接触したら消せるようにしてみる。
         if (obj is MKFireball f)
         {
             f.OnPlayerHit(this);

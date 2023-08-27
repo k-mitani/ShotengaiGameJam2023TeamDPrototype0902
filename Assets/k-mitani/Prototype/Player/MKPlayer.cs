@@ -28,6 +28,14 @@ public class MKPlayer : MKPlayerFormationUnit
         m_input.Player.Rearrange.performed += _ => Rearrange();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        Kobuta.Damaged += Kobuta_Damaged;
+        m_option1.Kobuta.Damaged += Kobuta_Damaged;
+        m_option2.Kobuta.Damaged += Kobuta_Damaged;
+    }
+
     void Update()
     {
         Move();
@@ -92,5 +100,13 @@ public class MKPlayer : MKPlayerFormationUnit
 
         // UIを更新する。
         MKUIManager.Instance.RearrangeKobuta(Kobuta, m_option1.Kobuta, m_option2.Kobuta);
+    }
+
+    private void Kobuta_Damaged(object sender, EventArgs e)
+    {
+        // 全てのコブタの無敵時間を開始する。
+        Kobuta.StartDamagedMuteki();
+        m_option1.Kobuta.StartDamagedMuteki();
+        m_option2.Kobuta.StartDamagedMuteki();
     }
 }
