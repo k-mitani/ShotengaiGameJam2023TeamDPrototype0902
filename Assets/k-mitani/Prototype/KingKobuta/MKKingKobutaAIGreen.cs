@@ -34,13 +34,18 @@ public class MKKingKobutaAIGreen : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(m_fireballInterval);
-            if (m_face.ShouldPause) continue;
+            if (m_face.ShouldPause)
+            {
+                yield return null;
+                continue;
+            }
 
             if (!m_face.IsDead)
             {
                 m_face.ShootFast();
             }
+
+            yield return new WaitForSeconds(m_fireballInterval);
         }
     }
 

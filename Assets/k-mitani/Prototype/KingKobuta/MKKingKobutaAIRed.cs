@@ -24,13 +24,18 @@ public class MKKingKobutaAIRed : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(m_fireballInterval);
-            if (m_face.ShouldPause) continue;
+            if (m_face.ShouldPause)
+            {
+                yield return null;
+                continue;
+            }
 
             if (!m_face.IsDead)
             {
                 m_face.Shoot3();
             }
+
+            yield return new WaitForSeconds(m_fireballInterval);
         }
     }
 
