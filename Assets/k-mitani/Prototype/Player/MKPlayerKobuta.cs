@@ -13,7 +13,7 @@ public class MKPlayerKobuta : MonoBehaviour
 
     private SpriteRenderer m_renderer;
     private Vector3 m_bulletPositionOffset = new Vector3(0.5f, 0, 0);
-    public bool IsDamaged { get; private set; } = false;
+    public bool IsDamaged { get; set; } = false;
 
     private List<MKPlayerBullet> m_bullets = new List<MKPlayerBullet>();
     private float m_autoShootInterval = 0f;

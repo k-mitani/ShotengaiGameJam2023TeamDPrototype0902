@@ -5,18 +5,28 @@ using UnityEngine;
 public class LifeUpItem : MonoBehaviour
 {
     [SerializeField] List<GameObject> m_pigsList = new List<GameObject>();
+    [SerializeField] GameObject m_effect = null;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
         {
-            if (m_pigsList.Find(match => match == collision))
+            //リストの中を検索
+            for (int i = 0; i < 3; i++)
             {
-                //MKPlayerKobutaのIsDamageのsetterにアクセスしたい
-                //collision.GetComponent<MKPlayerKobuta>().IsDamaged = false;
+                if (collision.gameObject == m_pigsList[i])
+                {
+                    //ダメージ中のコブタと当たった場合、ダメージフラグをfalseにし、色をデフォルトにする
+                    if (collision.GetComponent<MKPlayerKobuta>().IsDamaged == true)
+                    {
+                        collision.GetComponent<MKPlayerKobuta>().IsDamaged = false;
+                        collision.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        Instantiate(m_effect, collision.transform.position, Quaternion.identity);
+                        Destroy(this.gameObject);
+                    }
+                }
             }
-            //何かに当たったらこのオブジェクトを削除
-            Destroy(this.gameObject);
         }
     }
 }
