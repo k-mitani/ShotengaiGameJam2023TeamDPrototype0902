@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TitleSceneManager : MonoBehaviour
 {
+    [SerializeField] private SceneTransitionCurtain curtain = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,6 @@ public class TitleSceneManager : MonoBehaviour
 
     public void OnGameStartClick()
     {
-        SceneManager.LoadScene("StageSelectionScene");
+        StartCoroutine(LoadingSceneManager.LoadCoroutine("MKPrototypeScene-k-mitani", curtain));
     }
 }
