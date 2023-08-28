@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MKUIManager : MonoBehaviour
@@ -18,6 +19,14 @@ public class MKUIManager : MonoBehaviour
     private CinemachineImpulseSource m_impulseSource;
 
     [NonSerialized] public int m_score = 0;
+
+    [SerializeField] private GameObject m_gameOverPanel;
+    [SerializeField] private TextMeshProUGUI m_gameOverText;
+    [SerializeField] private float gameOverBlinkDurationMax = 1f;
+    [SerializeField] private SceneTransitionCurtain curtain;
+
+    public bool IsGameOver { get; private set; } = false;
+    private List<IDisposable> disposables = new List<IDisposable>();
 
     private void UpdateScoreText()
     {
@@ -47,6 +56,73 @@ public class MKUIManager : MonoBehaviour
         m_impulseSource.GenerateImpulse();
     }
 
+    public void OnGameOver()
+    {
+        StartCoroutine(DoGameOver());
+    }
+
+    private IEnumerator DoGameOver()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Time.timeScale = 0.04f;
+        IsGameOver = true;
+        MKSoundManager.Instance.StopBgm();
+
+        yield return new WaitForSeconds(0.04f);
+        Time.timeScale = 1f;
+
+        var pressAnyKeyAction = new InputAction(
+            type: InputActionType.PassThrough,
+            binding: "*/<Button>",
+            interactions: "Press");
+        disposables.Add(pressAnyKeyAction);
+        pressAnyKeyAction.Enable();
+        pressAnyKeyAction.performed += _ =>
+        {
+            pressAnyKeyAction.Disable();
+            StartCoroutine(LoadingSceneManager.LoadCoroutine("TitleScene", curtain));
+        };
+
+        m_gameOverPanel.SetActive(true);
+        StartCoroutine(BlinkGameOverText());
+        StartCoroutine(WaitAndMoveToTitle());
+    }
+
+    private IEnumerator BlinkGameOverText()
+    {
+        var a = 0f;
+        var originalColor = m_gameOverText.color;
+        m_gameOverText.color = originalColor * new Color(1, 1, 1, a);
+        while (true)
+        {
+            var gameOverBlinkDuration = gameOverBlinkDurationMax;
+            while (true)
+            {
+                yield return null;
+                gameOverBlinkDuration -= Time.deltaTime;
+                if (gameOverBlinkDuration <= 0) break;
+                a = 1 - gameOverBlinkDuration / gameOverBlinkDurationMax;
+                m_gameOverText.color = originalColor * new Color(1, 1, 1, a);
+            }
+            yield return new WaitForSeconds(0.3f);
+            gameOverBlinkDuration = gameOverBlinkDurationMax;
+            while (true)
+            {
+                yield return null;
+                gameOverBlinkDuration -= Time.deltaTime;
+                if (gameOverBlinkDuration <= 0) break;
+                a = gameOverBlinkDuration / gameOverBlinkDurationMax;
+                m_gameOverText.color = originalColor * new Color(1, 1, 1, a);
+            }
+        }
+    }
+
+    private IEnumerator WaitAndMoveToTitle()
+    {
+        yield return new WaitForSeconds(30);
+        StartCoroutine(LoadingSceneManager.LoadCoroutine("TitleScene", curtain));
+    }
+
     void Awake()
     {
         Instance = this;
@@ -58,5 +134,14 @@ public class MKUIManager : MonoBehaviour
     void Start()
     {
         UpdateScoreText();
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var item in disposables)
+        {
+            item.Dispose();
+        }
+        Instance = null;
     }
 }

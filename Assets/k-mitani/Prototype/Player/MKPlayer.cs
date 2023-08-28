@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class MKPlayer : MKPlayerFormationUnit
 {
@@ -105,9 +106,22 @@ public class MKPlayer : MKPlayerFormationUnit
 
     private void Kobuta_Damaged(object sender, EventArgs e)
     {
+        // 全部のコブタがやられたらゲームオーバー
+        var gameOver = Kobuta.IsDamaged && m_option1.Kobuta.IsDamaged && m_option2.Kobuta.IsDamaged;
+        if (gameOver)
+        {
+            MKUIManager.Instance.OnGameOver();
+            return;
+        }
+
         // 全てのコブタの無敵時間を開始する。
         Kobuta.StartDamagedMuteki();
         m_option1.Kobuta.StartDamagedMuteki();
         m_option2.Kobuta.StartDamagedMuteki();
+    }
+
+    private void OnDestroy()
+    {
+        m_input.Dispose();
     }
 }

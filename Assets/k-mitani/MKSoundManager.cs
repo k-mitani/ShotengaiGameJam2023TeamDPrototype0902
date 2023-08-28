@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MKSoundManager : MonoBehaviour
 {
@@ -12,22 +13,22 @@ public class MKSoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] bgms;
 
     [SerializeField] private AudioClip sePlayerShoot;
-    public void PlaySePlayerShoot() => PlaySe(sePlayerShoot);
+    public void PlaySePlayerShoot() => PlayBattleSe(sePlayerShoot);
 
     [SerializeField] private AudioClip sePlayerDamaged;
-    public void PlaySePlayerDamaged() => PlaySe(sePlayerDamaged);
+    public void PlaySePlayerDamaged() => PlayBattleSe(sePlayerDamaged);
 
     [SerializeField] private AudioClip seEnemyDamaged;
-    public void PlaySeEnemyDamaged() => PlaySe(seEnemyDamaged);
+    public void PlaySeEnemyDamaged() => PlayBattleSe(seEnemyDamaged);
 
     [SerializeField] private AudioClip seKingKobutaShoot;
-    public void PlaySeKingKobutaShoot() => PlaySe(seKingKobutaShoot);
+    public void PlaySeKingKobutaShoot() => PlayBattleSe(seKingKobutaShoot);
 
     [SerializeField] private AudioClip seSandwichBurned;
-    public void PlaySeSandwichBurned() => PlaySe(seSandwichBurned);
+    public void PlaySeSandwichBurned() => PlayBattleSe(seSandwichBurned);
 
     [SerializeField] private AudioClip sePlayerFormationChanged;
-    public void PlaySePlayerFormationChanged() => PlaySe(sePlayerFormationChanged);
+    public void PlaySePlayerFormationChanged() => PlayBattleSe(sePlayerFormationChanged);
 
     private void Awake()
     {
@@ -63,6 +64,19 @@ public class MKSoundManager : MonoBehaviour
     public void StopBgm()
     {
         bgmSource.Stop();
+    }
+
+    private void PlayBattleSe(AudioClip clip)
+    {
+        // 戦闘SEは、ゲームオーバー中なら鳴らさない。
+        if (SceneManager.GetActiveScene().name.StartsWith("MKPrototypeScene"))
+        {
+            if (MKUIManager.Instance?.IsGameOver ?? false)
+            {
+                return;
+            }
+        }
+        PlaySe(clip);
     }
 
     private void PlaySe(AudioClip clip)
