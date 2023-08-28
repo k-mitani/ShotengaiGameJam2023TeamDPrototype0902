@@ -90,6 +90,7 @@ public class MKPlayer : MKPlayerFormationUnit
         // まず各コブタの親を付け替える。
         var playerKobuta = Kobuta;
         UpdateKobutaImage(m_option1.Kobuta);
+        
         m_option1.UpdateKobutaImage(m_option2.Kobuta);
         m_option2.UpdateKobutaImage(playerKobuta);
 
