@@ -5,6 +5,7 @@ using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MKUIManager : MonoBehaviour
@@ -25,6 +26,9 @@ public class MKUIManager : MonoBehaviour
     [SerializeField] private float gameOverBlinkDurationMax = 1f;
     [SerializeField] private SceneTransitionCurtain curtain;
 
+    [SerializeField] private GameObject m_pausePanel;
+
+    public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
     private List<IDisposable> disposables = new List<IDisposable>();
 
@@ -122,6 +126,46 @@ public class MKUIManager : MonoBehaviour
         yield return new WaitForSeconds(30);
         StartCoroutine(LoadingSceneManager.LoadCoroutine("TitleScene", curtain));
     }
+
+    public void GoToTitle()
+    {
+        IsGameOver = true;
+        Time.timeScale = 1;
+        StartCoroutine(LoadingSceneManager.LoadCoroutine("TitleScene", curtain));
+    }
+
+    public void RestartGame()
+    {
+        IsGameOver = true;
+        Time.timeScale = 1;
+        curtain.Close(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+    }
+
+    public void TogglePause()
+    {
+        if (IsPaused) Resume();
+        else Pause();
+    }
+
+    public void Pause()
+    {
+        IsPaused = true;
+        Time.timeScale = 0;
+        m_pausePanel.SetActive(true);
+        if (MKPlayer.Instance != null) MKPlayer.Instance.SetUiMode(true);
+    }
+
+    public void Resume()
+    {
+        IsPaused = false;
+        Time.timeScale = 1;
+        m_pausePanel.SetActive(false);
+        if (MKPlayer.Instance != null) MKPlayer.Instance.SetUiMode(false);
+    }
+
 
     void Awake()
     {

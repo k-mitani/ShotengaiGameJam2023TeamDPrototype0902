@@ -8,6 +8,8 @@ using UnityEngine.Windows;
 
 public class MKPlayer : MKPlayerFormationUnit
 {
+    public static MKPlayer Instance { get; private set; }
+
     [SerializeField] private float m_speed = 7.5f;
     [SerializeField] private float m_xMin = -8.3f;
     [SerializeField] private float m_xMax = 8.3f;
@@ -24,10 +26,29 @@ public class MKPlayer : MKPlayerFormationUnit
 
     private void Awake()
     {
+        Instance = this;
         m_input = new MKPrototypeInputAction();
         m_input.Enable();
         m_input.Player.Rearrange.performed += _ => Rearrange();
+        m_input.Player.Pause.performed += _ => MKUIManager.Instance.TogglePause();
+        m_input.UI.Pause.performed += _ => MKUIManager.Instance.TogglePause();
+        SetUiMode(false);
     }
+
+    public void SetUiMode(bool on)
+    {
+        if (on)
+        {
+            m_input.Player.Disable();
+            m_input.UI.Enable();
+        }
+        else
+        {
+            m_input.Player.Enable();
+            m_input.UI.Disable();
+        }
+    }
+
 
     protected override void Start()
     {
@@ -123,5 +144,6 @@ public class MKPlayer : MKPlayerFormationUnit
     private void OnDestroy()
     {
         m_input.Dispose();
+        if (Instance == this) Instance = null;
     }
 }
