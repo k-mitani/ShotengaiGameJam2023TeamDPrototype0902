@@ -936,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &301140342
 Transform:
   m_ObjectHideFlags: 0
@@ -1996,7 +1996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &620161092
 Transform:
   m_ObjectHideFlags: 0
@@ -2026,7 +2026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_kingKobuta: {fileID: 1483480501}
-  m_skipInitialMove: 0
+  m_skipInitialMove: 1
 --- !u!1 &681703884
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,6 +4428,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1454661329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1712139114035474, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_Name
+      value: RankingLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817098320978224, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee393f04960d94baeaf854699b2ae1e3, type: 3}
 --- !u!1001 &1460508311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5563,8 +5620,17 @@ MonoBehaviour:
   autoPlayBgm: 1
   playerPrefab: {fileID: 5279834037224424235, guid: 09692414b80aad54e80b0d02b5671e11, type: 3}
   bgmSource: {fileID: 1860954941}
-  bgm1: {fileID: 8300000, guid: d655a0117cd47c044a35e1d4b653cf93, type: 3}
-  bgm2: {fileID: 8300000, guid: 73cdda4cd8be39447afe1984207bf35c, type: 3}
+  bgms:
+  - {fileID: 8300000, guid: 24329230955ee5c4b952a7e21f9b78d0, type: 3}
+  - {fileID: 8300000, guid: cf906bfde2353ae48af6eeff84926d3a, type: 3}
+  - {fileID: 8300000, guid: 7b20372729850dd46bc9a46c08f60f86, type: 3}
+  - {fileID: 8300000, guid: 8ea8f853d36591f45abd43a33056f326, type: 3}
+  - {fileID: 8300000, guid: 923cbeb5af5810540a8f05d64c4492ba, type: 3}
+  - {fileID: 8300000, guid: d656038eb8b15a2439283dce91eba49c, type: 3}
+  - {fileID: 8300000, guid: 0d1dcb1a79f97fe43ac9786c75df14a8, type: 3}
+  - {fileID: 8300000, guid: 054f2be73861243428dafde9df229e1f, type: 3}
+  - {fileID: 8300000, guid: 75d64fef80727ce4a94fc4892ae9d3f3, type: 3}
+  - {fileID: 8300000, guid: f0114ab059faf2242bc8c513df3558a5, type: 3}
   sePlayerShoot: {fileID: 8300000, guid: dd936fec7cc916b4580b65b2ec5836b5, type: 3}
   sePlayerDamaged: {fileID: 8300000, guid: 1c5c6efd76499b94f937dbd932f8a73c, type: 3}
   seEnemyDamaged: {fileID: 8300000, guid: 5192f623efb261e4d968c55135d1a95d, type: 3}
@@ -5600,7 +5666,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
