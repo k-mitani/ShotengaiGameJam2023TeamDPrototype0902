@@ -90,4 +90,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openedAtStart: 0
-  durationMax: 0.3
+  durationMax: 0.2
