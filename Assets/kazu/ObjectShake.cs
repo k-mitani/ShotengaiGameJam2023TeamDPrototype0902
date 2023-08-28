@@ -10,7 +10,7 @@ public class ObjectShake : MonoBehaviour
     [Header("揺れ時間")]public float time=1;
     private float timer;
     [Header("揺れスピード")]public float Shakespeed;
-    private Vector2 pos;
+    private Vector3 pos;
     private float timer2;
     // Start is called before the first frame update
     void Start()
@@ -22,22 +22,27 @@ public class ObjectShake : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (istime)
+        if (istime&&timer<=0)
         {
             timer = time;
-            istime = false;
+            pos = transform.localPosition;
         }
         timer -= Time.deltaTime;
-        if (timer < 0)
+        if (timer < 0&&istime)
         {
+            istime = false;
             transform.localPosition = pos;
         }
         else
         {
             if(timer2<=0)
             {
-                transform.localPosition = new Vector2(pos.x + ((Mathf.PerlinNoise(Random.Range(1, 0f), Random.Range(1, 0)) - 0.5f) * 2 * Shakespeed), pos.y + ((Mathf.PerlinNoise(Random.Range(-1, 0), Random.Range(-1, 0)) - 0.5f) * 2 * Shakespeed));
-                timer2 = 0.01f;
+                if(istime)
+                {
+                    transform.localPosition = new Vector3(pos.x + ((Mathf.PerlinNoise(Random.Range(1, 0f), Random.Range(1, 0)) - 0.5f) * 2 * Shakespeed), pos.y + ((Mathf.PerlinNoise(Random.Range(-1, 0), Random.Range(-1, 0)) - 0.5f) * 2 * Shakespeed), pos.z);
+                    timer2 = 0.01f;
+                }
+               
             }
             else
             {

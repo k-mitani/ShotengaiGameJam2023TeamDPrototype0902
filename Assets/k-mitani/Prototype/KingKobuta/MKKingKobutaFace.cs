@@ -16,7 +16,7 @@ public class MKKingKobutaFace : MonoBehaviour
     [SerializeField] private MKFireball m_fireballPrefab;
     [SerializeField] private MKKingKobuta m_kingKobuta;
     [SerializeField] private Sprite m_deadFaceImage;
-
+    [SerializeField] private ObjectShake os;
     private MKPlayer m_player;
     private SpriteRenderer m_spriteRenderer;
     [NonSerialized] public CircleCollider2D m_collider;
@@ -45,6 +45,10 @@ public class MKKingKobutaFace : MonoBehaviour
         {
             var adj = (10 - (moveDistance - 1)) / 10f;
             score = (int)Mathf.Max(score * adj, 1);
+        }
+        if(!(os==null))
+        {
+            os.istime = true;
         }
         MKUIManager.Instance.AddScore(score);
         MKSoundManager.Instance.PlaySeEnemyDamaged();
