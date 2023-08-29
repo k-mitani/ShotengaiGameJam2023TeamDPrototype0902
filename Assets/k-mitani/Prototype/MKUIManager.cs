@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
@@ -61,6 +62,9 @@ public class MKUIManager : MonoBehaviour
     public void SetKobutaDamaged(MKKobutaType type, bool damaged)
     {
         m_lifes[(int)type].color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
+
+        //var healthyCount = m_lifes.Count(c => c.color.a == 1);
+        //MKSoundManager.Instance.SetBGMPitch(healthyCount == 1 ? 1.25f : 1f);
     }
 
     public void ShakeCamera()

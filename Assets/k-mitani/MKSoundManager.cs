@@ -64,6 +64,11 @@ public class MKSoundManager : MonoBehaviour
         bgmSource.Play();
     }
 
+    public void SetBGMPitch(float pitch)
+    {
+        bgmSource.pitch = pitch;
+    }
+
     public void StopBgm()
     {
         bgmSource.Stop();
