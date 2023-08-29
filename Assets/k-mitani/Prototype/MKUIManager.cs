@@ -27,6 +27,7 @@ public class MKUIManager : MonoBehaviour
     [SerializeField] private SceneTransitionCurtain curtain;
 
     [SerializeField] private GameObject m_pausePanel;
+    [SerializeField] private GameObject m_yoshinoUi;
 
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
@@ -48,6 +49,13 @@ public class MKUIManager : MonoBehaviour
         m_lifes[(int)p1.Type].rectTransform.anchoredPosition = new Vector3(+100, 0);
         m_lifes[(int)p2.Type].rectTransform.anchoredPosition = new Vector3(0, 0);
         m_lifes[(int)p3.Type].rectTransform.anchoredPosition = new Vector3(-100, 0);
+
+        // ãgñÏÇ≥ÇÒÇÃUIÇçXêVÇ∑ÇÈÅB
+        var lifeUi = FindObjectOfType<LifeUIManager>();
+        if (lifeUi != null)
+        {
+            lifeUi.LifeUISetUp();
+        }
     }
 
     public void SetKobutaDamaged(MKKobutaType type, bool damaged)
@@ -74,6 +82,7 @@ public class MKUIManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.04f);
         Time.timeScale = 1f;
+        m_yoshinoUi.SetActive(false);
 
         var pressAnyKeyAction = new InputAction(
             type: InputActionType.PassThrough,
