@@ -1359,7 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058009b9d8e5b1849b3674e04b2e8ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitDurationMax: 3
+  waitDurationMax: 2.75
 --- !u!4 &258947573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6806305479957640072, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
@@ -1381,7 +1381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &301140342
 Transform:
   m_ObjectHideFlags: 0
@@ -2858,7 +2858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &620161092
 Transform:
   m_ObjectHideFlags: 0
@@ -2888,7 +2888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_kingKobuta: {fileID: 1483480501}
-  m_skipInitialMove: 1
+  m_skipInitialMove: 0
 --- !u!114 &620161094
 MonoBehaviour:
   m_ObjectHideFlags: 0
