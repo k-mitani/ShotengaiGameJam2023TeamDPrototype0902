@@ -22,11 +22,16 @@ public class LifeUpItem : MonoBehaviour
                     {
                         collision.GetComponent<MKPlayerKobuta>().IsDamaged = false;
                         collision.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                        Instantiate(m_effect, collision.transform.position, Quaternion.identity);
-                        Destroy(this.gameObject);
+                        OnPlayerHit(collision.GetComponent<MKPlayerKobuta>());
                     }
                 }
             }
         }
+    }
+
+    public void OnPlayerHit(MKPlayerKobuta kobuta)
+    {
+        Instantiate(m_effect, kobuta.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }

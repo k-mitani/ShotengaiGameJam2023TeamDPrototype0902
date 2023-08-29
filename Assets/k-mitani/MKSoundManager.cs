@@ -30,6 +30,9 @@ public class MKSoundManager : MonoBehaviour
     [SerializeField] private AudioClip sePlayerFormationChanged;
     public void PlaySePlayerFormationChanged() => PlayBattleSe(sePlayerFormationChanged);
 
+    [SerializeField] private AudioClip sePlayerHealed;
+    public void PlaySePlayerHealed() => PlayBattleSe(sePlayerHealed);
+
     private void Awake()
     {
         if (Instance != null)

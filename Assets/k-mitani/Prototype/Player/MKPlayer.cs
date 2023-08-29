@@ -11,13 +11,13 @@ public class MKPlayer : MKPlayerFormationUnit
     public static MKPlayer Instance { get; private set; }
 
     [SerializeField] private float m_speed = 7.5f;
-    [SerializeField] private float m_xMin = -8.3f;
-    [SerializeField] private float m_xMax = 8.3f;
-    [SerializeField] private float m_yMin = -4.6f;
-    [SerializeField] private float m_yMax = 4.6f;
+    [SerializeField] public float m_xMin = -8.3f;
+    [SerializeField] public float m_xMax = 8.3f;
+    [SerializeField] public float m_yMin = -4.6f;
+    [SerializeField] public float m_yMax = 4.6f;
 
-    [SerializeField] private MKOption m_option1;
-    [SerializeField] private MKOption m_option2;
+    [SerializeField] public MKOption m_option1;
+    [SerializeField] public MKOption m_option2;
     [SerializeField] private float m_rearrangeDuration = 0.25f;
 
     private MKPrototypeInputAction m_input;
@@ -56,6 +56,9 @@ public class MKPlayer : MKPlayerFormationUnit
         Kobuta.Damaged += Kobuta_Damaged;
         m_option1.Kobuta.Damaged += Kobuta_Damaged;
         m_option2.Kobuta.Damaged += Kobuta_Damaged;
+        Kobuta.HealItemGained += Kobuta_HealItemGained;
+        m_option1.Kobuta.HealItemGained += Kobuta_HealItemGained;
+        m_option2.Kobuta.HealItemGained += Kobuta_HealItemGained;
     }
 
     void Update()
@@ -140,6 +143,21 @@ public class MKPlayer : MKPlayerFormationUnit
         Kobuta.StartDamagedMuteki();
         m_option1.Kobuta.StartDamagedMuteki();
         m_option2.Kobuta.StartDamagedMuteki();
+    }
+
+    private void Kobuta_HealItemGained(object sender, LifeUpItem item)
+    {
+        var receiver = sender as MKPlayerKobuta;
+        var kobutas = new[] { receiver, Kobuta, m_option1.Kobuta, m_option2.Kobuta };
+        foreach (var kobuta in kobutas)
+        {
+            if (!kobuta.IsDamaged) continue;
+            kobuta.Heal();
+            item.OnPlayerHit(kobuta);
+            break;
+        }
+        // ダメージを負ったコブタがいなければとりあえずアイテムの削除だけ行う。
+        item.OnPlayerHit(receiver);
     }
 
     private void OnDestroy()

@@ -22,6 +22,10 @@ public class MKPlayerKobuta : MonoBehaviour
     private float m_damagedMutekiDuration = 0f;
     private bool m_isInDamagedMuteki = false;
     public event EventHandler Damaged;
+    public event EventHandler<LifeUpItem> HealItemGained;
+
+    private Color referenceColor = new Color(1, 1, 1, 1);
+
     public void StartDamagedMuteki()
     {
         StartCoroutine(DamagedMutekiLoop());
@@ -29,9 +33,8 @@ public class MKPlayerKobuta : MonoBehaviour
 
     IEnumerator DamagedMutekiLoop()
     {
-        var originalColor = m_renderer.color;
-        var color1 = new Color(1, 1, 1, originalColor.a * 1);
-        var color2 = new Color(1, 1, 1, originalColor.a * 0.5f);
+        var color1 = new Color(1, 1, 1, referenceColor.a * 1);
+        var color2 = new Color(1, 1, 1, referenceColor.a * 0.5f);
         m_renderer.color = color1;
 
         m_isInDamagedMuteki = true;
@@ -40,6 +43,10 @@ public class MKPlayerKobuta : MonoBehaviour
         var blinkDuration = blinkDurationMax;
         while (m_damagedMutekiDuration > 0)
         {
+            // refernceColorは回復アイテムを取ると更新されるので、ここで最新の色を取得しておく。
+            color1 = new Color(1, 1, 1, referenceColor.a * 1);
+            color2 = new Color(1, 1, 1, referenceColor.a * 0.5f);
+
             m_damagedMutekiDuration -= Time.deltaTime;
             blinkDuration -= Time.deltaTime;
             if (blinkDuration <= 0)
@@ -51,7 +58,7 @@ public class MKPlayerKobuta : MonoBehaviour
             yield return null;
         }
         m_isInDamagedMuteki = false;
-        m_renderer.color = originalColor;
+        m_renderer.color = referenceColor;
     }
 
     private void Awake()
@@ -87,6 +94,13 @@ public class MKPlayerKobuta : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 回復アイテムの場合
+        if (collision.TryGetComponent(out LifeUpItem item))
+        {
+            HealItemGained?.Invoke(this, item);
+            return;
+        }
+
         // すでにダメージを受けていたら何もしない。
         if (IsDamaged)
         {
@@ -114,7 +128,7 @@ public class MKPlayerKobuta : MonoBehaviour
         if (!m_isInDamagedMuteki)
         {
             IsDamaged = true;
-            m_renderer.color = new Color(1, 1, 1, 0.25f);
+            m_renderer.color = referenceColor = new Color(1, 1, 1, 0.25f);
             MKUIManager.Instance.SetKobutaDamaged(Type, IsDamaged);
             MKUIManager.Instance.ShakeCamera();
             MKSoundManager.Instance.PlaySePlayerDamaged();
@@ -125,5 +139,14 @@ public class MKPlayerKobuta : MonoBehaviour
         {
             f.OnPlayerHit(this);
         }
+    }
+
+    internal void Heal()
+    {
+        Debug.Log("Heal " + name);
+        IsDamaged = false;
+        m_renderer.color = referenceColor = new Color(1, 1, 1, 1);
+        MKUIManager.Instance.SetKobutaDamaged(Type, IsDamaged);
+        MKSoundManager.Instance.PlaySePlayerHealed();
     }
 }
