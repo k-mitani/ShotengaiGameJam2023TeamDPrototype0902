@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5106374214803844403}
   - component: {fileID: 5106374214803844404}
   - component: {fileID: 5106374214803844405}
+  - component: {fileID: 3448152939321936992}
   m_Layer: 0
   m_Name: MKKingKobutaFace
   m_TagString: Untagged
@@ -129,6 +130,9 @@ MonoBehaviour:
   popupOffset: {x: 0, y: 1, z: 0}
   m_fireballStartPosition: {fileID: 3912908300031584407}
   m_fireballPrefab: {fileID: 8568177196972127452, guid: 96ad9ee3877a27045bd219bf3ab361fe, type: 3}
+  m_kingKobuta: {fileID: 0}
+  m_deadFaceImage: {fileID: 0}
+  os: {fileID: 3448152939321936992}
 --- !u!58 &5106374214803844405
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -145,6 +149,21 @@ CircleCollider2D:
   m_Offset: {x: 0.015510832, y: -0.04}
   serializedVersion: 2
   m_Radius: 0.13448913
+--- !u!114 &3448152939321936992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5106374214803844400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b52f3845362dd4bbdfef338bdb3c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  istime: 0
+  time: 0.4
+  Shakespeed: 2
 --- !u!1 &6228021822856382222
 GameObject:
   m_ObjectHideFlags: 0
