@@ -128,7 +128,7 @@ public class MKPlayerKobuta : MonoBehaviour
         if (!m_isInDamagedMuteki)
         {
             IsDamaged = true;
-            m_renderer.color = referenceColor = new Color(1, 1, 1, 0.25f);
+            m_renderer.color = referenceColor = new Color(1, 1, 1, 0.5f);
             MKUIManager.Instance.SetKobutaDamaged(Type, IsDamaged);
             MKUIManager.Instance.ShakeCamera();
             MKSoundManager.Instance.PlaySePlayerDamaged();
