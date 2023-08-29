@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb = null;
     //弾の消滅時間
     private float m_deadtime = 0f;
+
+    
     //弾のタイプのゲッター
     public BulletType GetBulletType
     {
@@ -35,7 +37,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.tag == "Enemy")
             {
-
+                
             }
         }
     }
