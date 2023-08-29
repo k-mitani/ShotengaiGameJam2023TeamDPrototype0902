@@ -27,7 +27,7 @@ public class TitleSceneManager : MonoBehaviour
         pressAnyKeyAction.performed += _ =>
         {
             pressAnyKeyAction.Disable();
-            StartCoroutine(LoadingSceneManager.LoadCoroutine("MKPrototypeScene-k-mitani", curtain));
+            StartCoroutine(LoadingSceneManager.LoadCoroutine("MKPrototypeScene", curtain));
         };
 
         StartCoroutine(BlinkText());
