@@ -57,9 +57,13 @@ public class MKPlayerBullet : MonoBehaviour
             m_isHit = true;
             // 減点する。
             var pop = Instantiate(m_popupTextPrefab, transform.position + popupOffset, Quaternion.identity);
-            pop.SetText("-100😭");
-            MKUIManager.Instance.AddScore(-100);
+            pop.SetText("-300😭");
+            MKUIManager.Instance.AddScore(-300);
             MKSoundManager.Instance.PlaySeSandwichBurned();
+            if (collision.transform.parent.TryGetComponent<MKFireball>(out var fireball))
+            {
+                fireball.OnPlayerBulletHit(this);
+            }
         }
         else if (collision.TryGetComponent<MKKobun>(out var kobun))
         {

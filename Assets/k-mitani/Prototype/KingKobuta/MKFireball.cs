@@ -23,6 +23,11 @@ public class MKFireball : MonoBehaviour
         Destroy(gameObject);
     }
 
+    internal void OnPlayerBulletHit(MKPlayerBullet mKPlayerBullet)
+    {
+        Destroy(gameObject);
+    }
+
     void Update()
     {
         transform.position += Time.deltaTime * m_velocity;
