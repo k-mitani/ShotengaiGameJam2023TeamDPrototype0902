@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class LifeUIManager : MonoBehaviour
 {
+    public static LifeUIManager Instance { get; private set; }
     [SerializeField, Header("各Canvasリスト")] private List<Canvas> m_canvaes = new List<Canvas>();
     [SerializeField, Header("各画像の位置リスト")] private List<Vector3> m_TargetPos = new List<Vector3>();
     [SerializeField, Header("画像の移動、拡大が終了するまでの時間")] private float m_imageMoveTime = 1f;
@@ -24,6 +25,7 @@ public class LifeUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         m_players = FindObjectOfType<PlayerController>();
 
         m_element0Image = m_canvaes[0].GetComponentInChildren<Image>();
@@ -97,5 +99,9 @@ public class LifeUIManager : MonoBehaviour
         m_canvaes[0].sortingOrder = 3;
         m_canvaes[1].sortingOrder = 2;
         m_canvaes[2].sortingOrder = 1;
+    }
+    public void SetKobutaDamagedImage(MKKobutaType type, bool damaged)
+    {
+        m_canvaes[(int)type].GetComponentInChildren<Image>().color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
     }
 }
