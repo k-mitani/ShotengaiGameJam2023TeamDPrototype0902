@@ -145,8 +145,13 @@ public class MKPlayer : MKPlayerFormationUnit
         m_option2.Kobuta.StartDamagedMuteki();
     }
 
+    private LifeUpItem prevGainedItem;
     private void Kobuta_HealItemGained(object sender, LifeUpItem item)
     {
+        // たまに複数のコブタで同時に当たり判定がおこなわれることがあるので対策する。
+        if (item == prevGainedItem) return;
+        prevGainedItem = item;
+
         var receiver = sender as MKPlayerKobuta;
         var kobutas = new[] { receiver, Kobuta, m_option1.Kobuta, m_option2.Kobuta };
         foreach (var kobuta in kobutas)
