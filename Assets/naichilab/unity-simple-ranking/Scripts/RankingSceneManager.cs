@@ -9,9 +9,9 @@ namespace naichilab
 {
     public class RankingSceneManager : MonoBehaviour
     {
-        private const string OBJECT_ID = "objectId";
-        private const string COLUMN_SCORE = "score";
-        private const string COLUMN_NAME = "name";
+        public const string OBJECT_ID = "objectId";
+        public const string COLUMN_SCORE = "score";
+        public const string COLUMN_NAME = "name";
 
 
         [SerializeField] Text captionLabel;

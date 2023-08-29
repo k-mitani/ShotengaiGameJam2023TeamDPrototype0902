@@ -23,6 +23,7 @@ public class MKKingKobutaFace : MonoBehaviour
 
     public bool ShouldPause => m_kingKobuta.ShouldPause;
     public bool IsDead => hp <= 0;
+    public event EventHandler Dead;
 
     private void Awake()
     {
@@ -57,6 +58,7 @@ public class MKKingKobutaFace : MonoBehaviour
         if (IsDead)
         {
             StartCoroutine(AfterDead());
+            Dead?.Invoke(this, EventArgs.Empty);
         }
     }
 

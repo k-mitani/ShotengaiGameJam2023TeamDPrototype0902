@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/k-mitani/OtherScenes/LoadingScene.unity
     guid: e5e10e81aa03285458cea079ef302aab
+  - enabled: 1
+    path: Assets/k-mitani/StageClear/StageClearScene.unity
+    guid: 7f164a7c0770d3d44ae9613f4486c47c
   m_configObjects: {}

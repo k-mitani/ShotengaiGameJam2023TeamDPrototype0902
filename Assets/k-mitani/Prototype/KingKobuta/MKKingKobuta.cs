@@ -10,9 +10,23 @@ public class MKKingKobuta : MonoBehaviour
     [field: SerializeField] public bool ShouldPause { get; private set; } = false;
     [SerializeField] private MKKingKobutaFace[] m_faces;
 
+    public event EventHandler AllFaceDead;
+
     private void Start()
     {
+        foreach (var face in m_faces)
+        {
+            face.Dead += Face_Dead;
+        }
         ApplyPauseState();
+    }
+
+    private void Face_Dead(object sender, EventArgs e)
+    {
+        if (IsAllDead)
+        {
+            AllFaceDead?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public void Pause()

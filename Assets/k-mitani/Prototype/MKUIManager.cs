@@ -179,6 +179,23 @@ public class MKUIManager : MonoBehaviour
         if (MKPlayer.Instance != null) MKPlayer.Instance.SetUiMode(false);
     }
 
+    internal void OnGameClear()
+    {
+        StartCoroutine(GameClear());
+    }
+
+    private IEnumerator GameClear()
+    {
+        IsGameOver = true;
+        m_yoshinoUi.SetActive(false);
+
+        yield return new WaitForSeconds(2);
+        StageClearSceneManager.Parameter = new StageClearSceneManager.SceneParameter()
+        {
+            Score = m_score,
+        };
+        StartCoroutine(LoadingSceneManager.LoadCoroutine("StageClearScene", curtain));
+    }
 
     void Awake()
     {

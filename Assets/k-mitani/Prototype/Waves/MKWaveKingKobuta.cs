@@ -14,6 +14,7 @@ public class MKWaveKingKobuta : MKWaveBase
         base.Start();
         StartCoroutine(MoveToX0());
         StartCoroutine(Alert());
+        m_kingKobuta.AllFaceDead += kingKobuta_AllFaceDead;
     }
 
     private IEnumerator Alert()
@@ -45,9 +46,17 @@ public class MKWaveKingKobuta : MKWaveBase
         m_kingKobuta.Resume();
     }
 
+    private void kingKobuta_AllFaceDead(object sender, EventArgs e)
+    {
+        MKUIManager.Instance.OnGameClear();
+    }
+
     protected override bool IsWaveClear()
     {
-        // 3つの頭全てがやられたらクリア。
-        return m_kingKobuta.IsAllDead;
+        //// 3つの頭全てがやられたらクリア。
+        //return m_kingKobuta.IsAllDead;
+
+        // このウェーブの中でステージクリア画面に遷移するのでクリア状態にはしない。
+        return false;
     }
 }

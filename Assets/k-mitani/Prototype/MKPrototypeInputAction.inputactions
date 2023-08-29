@@ -541,7 +541,7 @@
                     "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -801,11 +801,11 @@
                 },
                 {
                     "name": "",
-                    "id": "38c99815-14ea-4617-8627-164d27641299",
+                    "id": "6533bf29-7ca2-4380-9d62-f1012768a179",
                     "path": "<Mouse>/scroll",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
