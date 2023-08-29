@@ -9,10 +9,10 @@ public class MKWaveKingKobuta : MKWaveBase
     [SerializeField] private bool m_skipInitialMove = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(MoveToX0());
-        StartCoroutine(WaveClearCheckLoop());
     }
 
     private IEnumerator MoveToX0()

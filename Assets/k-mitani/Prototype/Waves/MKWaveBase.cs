@@ -7,7 +7,7 @@ public class MKWaveBase : MonoBehaviour
 {
     public event EventHandler WaveClear;
 
-    void Start()
+    protected virtual void Start()
     {
         StartCoroutine(WaveClearCheckLoop());
     }
