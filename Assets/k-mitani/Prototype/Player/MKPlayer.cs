@@ -159,6 +159,7 @@ public class MKPlayer : MKPlayerFormationUnit
             if (!kobuta.IsDamaged) continue;
             kobuta.Heal();
             item.OnPlayerHit(kobuta);
+            MKSoundManager.Instance.PlaySePlayerHealed();
             break;
         }
         // ダメージを負ったコブタがいなければとりあえずアイテムの削除だけ行う。

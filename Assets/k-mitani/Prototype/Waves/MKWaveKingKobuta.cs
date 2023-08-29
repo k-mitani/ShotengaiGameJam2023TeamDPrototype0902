@@ -13,6 +13,17 @@ public class MKWaveKingKobuta : MKWaveBase
     {
         base.Start();
         StartCoroutine(MoveToX0());
+        StartCoroutine(Alert());
+    }
+
+    private IEnumerator Alert()
+    {
+        MKSoundManager.Instance.SetBGMVolume(0.25f);
+        MKSoundManager.Instance.PlaySeBossAlert();
+        yield return new WaitForSeconds(4);
+        MKSoundManager.Instance.PlaySeBossAlert();
+        yield return new WaitForSeconds(4);
+        MKSoundManager.Instance.SetBGMVolume(1);
     }
 
     private IEnumerator MoveToX0()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MKSoundPlayerInstant : MonoBehaviour
 {
-    [SerializeField] private AudioSource source;
+    [SerializeField] public AudioSource source;
 
     private bool destroyOnEnd;
 

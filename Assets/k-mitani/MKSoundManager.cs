@@ -33,6 +33,10 @@ public class MKSoundManager : MonoBehaviour
     [SerializeField] private AudioClip sePlayerHealed;
     public void PlaySePlayerHealed() => PlayBattleSe(sePlayerHealed);
 
+    [SerializeField] private AudioClip seBossAlert;
+    public void PlaySeBossAlert() => PlayBattleSe(seBossAlert, 0.6f);
+
+
     private void Awake()
     {
         if (Instance != null)
@@ -69,12 +73,17 @@ public class MKSoundManager : MonoBehaviour
         bgmSource.pitch = pitch;
     }
 
+    public void SetBGMVolume(float volume)
+    {
+        bgmSource.volume = volume;
+    }
+
     public void StopBgm()
     {
         bgmSource.Stop();
     }
 
-    private void PlayBattleSe(AudioClip clip)
+    private void PlayBattleSe(AudioClip clip, float? volume = null)
     {
         // 戦闘SEは、ゲームオーバー中なら鳴らさない。
         if (SceneManager.GetActiveScene().name.StartsWith("MKPrototypeScene"))
@@ -84,12 +93,16 @@ public class MKSoundManager : MonoBehaviour
                 return;
             }
         }
-        PlaySe(clip);
+        PlaySe(clip, volume);
     }
 
-    private void PlaySe(AudioClip clip)
+    private void PlaySe(AudioClip clip, float? volume = null)
     {
         var player = Instantiate(playerPrefab);
         player.Play(clip, false, true);
+        if (volume != null)
+        {
+            player.source.volume = volume.Value;
+        }
     }
 }

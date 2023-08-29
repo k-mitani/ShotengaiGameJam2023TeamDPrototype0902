@@ -65,6 +65,8 @@ MonoBehaviour:
   seKingKobutaShoot: {fileID: 8300000, guid: 8708eb1a2b0b2f245ba1bec01fdcd74c, type: 3}
   seSandwichBurned: {fileID: 8300000, guid: 29bcb7af5f031754d8aeed5997f5d4b4, type: 3}
   sePlayerFormationChanged: {fileID: 8300000, guid: 732ee6d274b898548be1ff03d5d7c6f5, type: 3}
+  sePlayerHealed: {fileID: 8300000, guid: b5d6066df4b4e5044afba33511785398, type: 3}
+  seBossAlert: {fileID: 8300000, guid: fd822dffacb1ae6438881d7e623eaba6, type: 3}
 --- !u!82 &1682971974746079042
 AudioSource:
   m_ObjectHideFlags: 0
