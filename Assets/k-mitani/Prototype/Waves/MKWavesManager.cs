@@ -45,6 +45,11 @@ public class MKWavesManager : MonoBehaviour
         else
         {
             Debug.Log("ゲームクリア");
+            if (MKUIManager.Instance.IsDemo)
+            {
+                // タイトル画面を再読込みする。
+                StartCoroutine(LoadingSceneManager.LoadCoroutine("TitleScene", MKUIManager.Instance.curtain));
+            }
         }
     }
 }

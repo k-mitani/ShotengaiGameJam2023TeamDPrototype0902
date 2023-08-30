@@ -8,6 +8,8 @@ public class MKItemSpawner : MonoBehaviour
     [SerializeField] private MKPlayer player;
     [SerializeField] private LifeUpItem yoshinoLifeUpItemPrefab;
 
+    public event System.EventHandler<Transform> ItemSpawned;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class MKItemSpawner : MonoBehaviour
                 var x = player.m_xMax + 1;
                 var y = Random.Range(player.m_yMin + 1, player.m_yMax - 1);
                 item.transform.position = new Vector3(x, y, 0);
+                ItemSpawned?.Invoke(this, item.transform);
                 var xMin = player.m_xMin;
                 while (xMin - 2 < item.transform.position.x)
                 {
@@ -40,7 +43,7 @@ public class MKItemSpawner : MonoBehaviour
                 }
                 if (!item.IsDestroyed())
                 {
-                    Destroy(item);
+                    Destroy(item.gameObject);
                 }
             }
         }

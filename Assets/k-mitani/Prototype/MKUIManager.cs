@@ -25,11 +25,13 @@ public class MKUIManager : MonoBehaviour
     [SerializeField] private GameObject m_gameOverPanel;
     [SerializeField] private TextMeshProUGUI m_gameOverText;
     [SerializeField] private float gameOverBlinkDurationMax = 1f;
-    [SerializeField] private SceneTransitionCurtain curtain;
+    [SerializeField] public SceneTransitionCurtain curtain;
 
     [SerializeField] private GameObject m_pausePanel;
 
     [SerializeField] private GameObject m_stageClearPanel;
+
+    [field: SerializeField] public bool IsDemo { get; private set; } = false;
 
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
@@ -42,12 +44,16 @@ public class MKUIManager : MonoBehaviour
 
     public void AddScore(int score)
     {
+        if (IsDemo) return;
+
         m_score = Math.Max(m_score + score, 0);
         UpdateScoreText();
     }
 
     public void RearrangeKobuta(MKPlayerKobuta p1, MKPlayerKobuta p2, MKPlayerKobuta p3)
     {
+        if (IsDemo) return;
+
         m_lifes[(int)p1.Type].rectTransform.anchoredPosition = new Vector3(+100, 0);
         m_lifes[(int)p2.Type].rectTransform.anchoredPosition = new Vector3(0, 0);
         m_lifes[(int)p3.Type].rectTransform.anchoredPosition = new Vector3(-100, 0);
@@ -62,6 +68,8 @@ public class MKUIManager : MonoBehaviour
 
     public void SetKobutaDamaged(MKKobutaType type, bool damaged)
     {
+        if (IsDemo) return;
+
         m_lifes[(int)type].color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
 
         //var healthyCount = m_lifes.Count(c => c.color.a == 1);
@@ -70,11 +78,15 @@ public class MKUIManager : MonoBehaviour
 
     public void ShakeCamera()
     {
+        if (IsDemo) return;
+
         m_impulseSource.GenerateImpulse();
     }
 
     public void OnGameOver()
     {
+        if (IsDemo) return;
+
         if (IsGameOver) return;
         StartCoroutine(DoGameOver());
     }
@@ -182,6 +194,8 @@ public class MKUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (IsDemo) return;
+
         UpdateScoreText();
     }
 

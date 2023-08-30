@@ -10,7 +10,7 @@ public class MKPlayer : MKPlayerFormationUnit
 {
     public static MKPlayer Instance { get; private set; }
 
-    [SerializeField] private float m_speed = 7.5f;
+    [SerializeField] public float m_speed = 7.5f;
     [SerializeField] public float m_xMin = -8.3f;
     [SerializeField] public float m_xMax = 8.3f;
     [SerializeField] public float m_yMin = -4.6f;
@@ -26,7 +26,7 @@ public class MKPlayer : MKPlayerFormationUnit
     public void OnBulletShoot(MKPlayerBullet bullet) => m_bullets.Add(bullet);
     public void OnBulletDestroy(MKPlayerBullet bullet) => m_bullets.Remove(bullet);
 
-    private MKPrototypeInputAction m_input;
+    [NonSerialized] public MKPrototypeInputAction m_input;
     private bool m_prevFireButton = false;
 
 
@@ -116,7 +116,7 @@ public class MKPlayer : MKPlayerFormationUnit
     /// <summary>
     /// 隊列を並べ替えます。
     /// </summary>
-    private void Rearrange()
+    public void Rearrange()
     {
         // まず各コブタの親を付け替える。
         var playerKobuta = Kobuta;

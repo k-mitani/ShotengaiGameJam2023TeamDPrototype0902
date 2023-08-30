@@ -100,11 +100,20 @@ public class MKSoundManager : MonoBehaviour
         // 戦闘SEは、ゲームオーバー中なら鳴らさない。
         if (SceneManager.GetActiveScene().name.StartsWith("MKPrototypeScene"))
         {
-            if (MKUIManager.Instance?.IsGameOver ?? false)
+            if (MKUIManager.Instance.IsGameOver)
             {
                 return;
             }
         }
+        // タイトルシーンでも鳴らさない。
+        if (SceneManager.GetActiveScene().name.StartsWith("TitleScene"))
+        {
+            if (MKUIManager.Instance.IsDemo)
+            {
+                return;
+            }
+        }
+
         PlaySe(clip, volume);
     }
 

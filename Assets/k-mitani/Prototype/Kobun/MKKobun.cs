@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class MKKobun : MonoBehaviour
 {
-    [SerializeField] private MKKobunColorType m_colorType;
+    [SerializeField] public MKKobunColorType m_colorType;
     [SerializeField] private float hp = 3;
     [SerializeField] private SpriteRenderer m_renderer;
     [SerializeField] private MKPopupText m_popupTextPrefab;
