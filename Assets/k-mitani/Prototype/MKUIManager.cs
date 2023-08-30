@@ -28,7 +28,6 @@ public class MKUIManager : MonoBehaviour
     [SerializeField] private SceneTransitionCurtain curtain;
 
     [SerializeField] private GameObject m_pausePanel;
-    [SerializeField] private GameObject m_yoshinoUi;
 
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
@@ -86,7 +85,6 @@ public class MKUIManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.04f);
         Time.timeScale = 1f;
-        m_yoshinoUi.SetActive(false);
 
         var pressAnyKeyAction = new InputAction(
             type: InputActionType.PassThrough,
@@ -187,7 +185,6 @@ public class MKUIManager : MonoBehaviour
     private IEnumerator GameClear()
     {
         IsGameOver = true;
-        m_yoshinoUi.SetActive(false);
 
         yield return new WaitForSeconds(2);
         StageClearSceneManager.Parameter = new StageClearSceneManager.SceneParameter()
