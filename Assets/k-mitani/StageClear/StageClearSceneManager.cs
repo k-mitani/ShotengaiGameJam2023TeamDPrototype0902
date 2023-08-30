@@ -81,6 +81,14 @@ public class StageClearSceneManager : MonoBehaviour
 
     void Start()
     {
+        // 10分経ったら自動でタイトルに移動する。
+        StartCoroutine(AutoMoveToTitle());
+        IEnumerator AutoMoveToTitle()
+        {
+            yield return new WaitForSeconds(60 * 10);
+            StartCoroutine(LoadingSceneManager.LoadCoroutine("TitleScene", curtain));
+        }
+
         var score = Parameter?.Score ?? 0;
 
         StartCoroutine(SetupRanking());
