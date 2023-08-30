@@ -51,7 +51,7 @@ public class MKWaveKingKobuta : MKWaveBase
         MKUIManager.Instance.OnGameClear();
     }
 
-    protected override bool IsWaveClear()
+    public override bool IsWaveClear()
     {
         //// 3つの頭全てがやられたらクリア。
         //return m_kingKobuta.IsAllDead;

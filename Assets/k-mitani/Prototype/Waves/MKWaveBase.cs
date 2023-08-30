@@ -27,7 +27,7 @@ public class MKWaveBase : MonoBehaviour
         }
     }
 
-    protected virtual bool IsWaveClear()
+    public virtual bool IsWaveClear()
     {
         // デフォルトでは、子要素が全て無くなったらクリアとする。
         return transform.childCount == 0;

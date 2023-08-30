@@ -22,7 +22,7 @@ public class MKWaveWait : MKWaveBase
         isClear = true;
     }
 
-    protected override bool IsWaveClear()
+    public override bool IsWaveClear()
     {
         // 3つの頭全てがやられたらクリア。
         return isClear;

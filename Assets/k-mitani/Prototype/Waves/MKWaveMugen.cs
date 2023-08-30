@@ -72,7 +72,7 @@ public class MKWaveMugen : MKWaveBase
     }
 
 
-    protected override bool IsWaveClear()
+    public override bool IsWaveClear()
     {
         return (endTime != -1 && elappsedTime > endTime) || kobunCount > kobunCountMax;
     }

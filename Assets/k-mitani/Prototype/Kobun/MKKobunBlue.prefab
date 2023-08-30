@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_colorType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7214219593682662937, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 8039445394926306792, guid: adfd6e42bca91d746ae14775025deed5, type: 3}
       propertyPath: m_Controller
       value: 
