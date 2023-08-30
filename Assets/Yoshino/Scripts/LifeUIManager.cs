@@ -6,6 +6,7 @@ public class LifeUIManager : MonoBehaviour
 {
     public static LifeUIManager Instance { get; private set; }
     [SerializeField, Header("各Canvasリスト")] private List<Canvas> m_canvaes = new List<Canvas>();
+    [SerializeField, Header("各画像リスト")] private List<Image> m_images = new List<Image>();
     [SerializeField, Header("各画像の位置リスト")] private List<Vector3> m_TargetPos = new List<Vector3>();
     [SerializeField, Header("画像の移動、拡大が終了するまでの時間")] private float m_imageMoveTime = 1f;
     /// <summary>ボタンを押してからの経過時間</summary>
@@ -28,9 +29,9 @@ public class LifeUIManager : MonoBehaviour
         Instance = this;
         m_players = FindObjectOfType<PlayerController>();
 
-        m_element0Image = m_canvaes[0].GetComponentInChildren<Image>();
-        m_element1Image = m_canvaes[1].GetComponentInChildren<Image>();
-        m_element2Image = m_canvaes[2].GetComponentInChildren<Image>();
+        m_element0Image = m_images[0] = m_canvaes[0].GetComponentInChildren<Image>();
+        m_element1Image = m_images[1] = m_canvaes[1].GetComponentInChildren<Image>();
+        m_element2Image = m_images[2] = m_canvaes[2].GetComponentInChildren<Image>();
 
         m_element0RectTf = m_element0Image.rectTransform;
         m_element1RectTf = m_element1Image.rectTransform;
@@ -102,6 +103,6 @@ public class LifeUIManager : MonoBehaviour
     }
     public void SetKobutaDamagedImage(MKKobutaType type, bool damaged)
     {
-        m_canvaes[(int)type].GetComponentInChildren<Image>().color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
+        m_images[(int)type].GetComponentInChildren<Image>().color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
     }
 }
