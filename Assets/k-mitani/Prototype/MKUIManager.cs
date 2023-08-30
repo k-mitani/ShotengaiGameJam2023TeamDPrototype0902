@@ -72,6 +72,13 @@ public class MKUIManager : MonoBehaviour
 
         m_lifes[(int)type].color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
 
+        // ‹g–ì‚³‚ñ‚ÌUI‚ğXV‚·‚éB
+        var lifeUi = FindObjectOfType<LifeUIManager>();
+        if (lifeUi != null)
+        {
+            lifeUi.SetKobutaDamagedImage(type, damaged);
+        }
+
         //var healthyCount = m_lifes.Count(c => c.color.a == 1);
         //MKSoundManager.Instance.SetBGMPitch(healthyCount == 1 ? 1.25f : 1f);
     }
