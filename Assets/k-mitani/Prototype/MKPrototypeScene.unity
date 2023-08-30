@@ -1514,7 +1514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &130274905
 Transform:
   m_ObjectHideFlags: 0
@@ -7600,13 +7600,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717744631}
+  - component: {fileID: 717744632}
   m_Layer: 0
   m_Name: Wave5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &717744631
 Transform:
   m_ObjectHideFlags: 0
@@ -7627,6 +7628,18 @@ Transform:
   m_Father: {fileID: 1159098039}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717744632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717744630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812265f5c940a324baacc300be49ab9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &736860727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14704,6 +14717,18 @@ PrefabInstance:
       propertyPath: <ShouldPause>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3656023702165318997, guid: 4fcafea76c25a1541948ac3298b00244, type: 3}
+      propertyPath: hp
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386180127546448139, guid: 4fcafea76c25a1541948ac3298b00244, type: 3}
+      propertyPath: hp
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386180127576211143, guid: 4fcafea76c25a1541948ac3298b00244, type: 3}
+      propertyPath: hp
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fcafea76c25a1541948ac3298b00244, type: 3}
 --- !u!4 &1483480500 stripped
@@ -14731,6 +14756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1497314219}
+  - component: {fileID: 1497314220}
   m_Layer: 0
   m_Name: Wave4
   m_TagString: Untagged
@@ -14759,6 +14785,18 @@ Transform:
   m_Father: {fileID: 1159098039}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1497314220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497314218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812265f5c940a324baacc300be49ab9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1498102020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7270607011609861540, guid: 2439f33beab14b64bbd90b49caef3cfd, type: 3}
@@ -18736,7 +18774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2057068326
 Transform:
   m_ObjectHideFlags: 0
