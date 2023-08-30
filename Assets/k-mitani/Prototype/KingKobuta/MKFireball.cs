@@ -25,7 +25,7 @@ public class MKFireball : MonoBehaviour
 
     internal void OnPlayerBulletHit(MKPlayerBullet mKPlayerBullet)
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     void Update()
