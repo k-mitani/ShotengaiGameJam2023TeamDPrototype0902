@@ -20,6 +20,12 @@ public class MKPlayer : MKPlayerFormationUnit
     [SerializeField] public MKOption m_option2;
     [SerializeField] private float m_rearrangeDuration = 0.25f;
 
+    [field: SerializeField] public int BulletCountMax { get; private set; } = 3;
+    private List<MKPlayerBullet> m_bullets = new List<MKPlayerBullet>();
+    public bool CanShoot => m_bullets.Count < BulletCountMax;
+    public void OnBulletShoot(MKPlayerBullet bullet) => m_bullets.Add(bullet);
+    public void OnBulletDestroy(MKPlayerBullet bullet) => m_bullets.Remove(bullet);
+
     private MKPrototypeInputAction m_input;
     private bool m_prevFireButton = false;
 

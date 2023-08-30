@@ -684,7 +684,6 @@ MonoBehaviour:
   gameOverBlinkDurationMax: 1
   curtain: {fileID: 317317071}
   m_pausePanel: {fileID: 2016024339}
-  m_yoshinoUi: {fileID: 2002756642}
 --- !u!4 &109482794
 Transform:
   m_ObjectHideFlags: 0
@@ -771,7 +770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &130274905
 Transform:
   m_ObjectHideFlags: 0
@@ -1002,6 +1001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KobutaBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 3457498702055023096, guid: f3e2af8949f32554cb4fb05d6d93cb1c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1578305970}
     - target: {fileID: 3457498702055023096, guid: f3e2af8949f32554cb4fb05d6d93cb1c, type: 3}
       propertyPath: <Type>k__BackingField
       value: 2
@@ -2858,7 +2861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &620161092
 Transform:
   m_ObjectHideFlags: 0
@@ -6268,6 +6271,10 @@ PrefabInstance:
       value: KobutaGreen
       objectReference: {fileID: 0}
     - target: {fileID: 3457498702055023096, guid: f3e2af8949f32554cb4fb05d6d93cb1c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1578305970}
+    - target: {fileID: 3457498702055023096, guid: f3e2af8949f32554cb4fb05d6d93cb1c, type: 3}
       propertyPath: <Type>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -6738,6 +6745,7 @@ MonoBehaviour:
   m_option1: {fileID: 2124095051}
   m_option2: {fileID: 2108469056}
   m_rearrangeDuration: 0.25
+  <BulletCountMax>k__BackingField: 3
 --- !u!4 &1578305971
 Transform:
   m_ObjectHideFlags: 0
@@ -8747,6 +8755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KobutaRed
       objectReference: {fileID: 0}
+    - target: {fileID: 3457498702055023096, guid: f3e2af8949f32554cb4fb05d6d93cb1c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1578305970}
     - target: {fileID: 3457498702055023098, guid: f3e2af8949f32554cb4fb05d6d93cb1c, type: 3}
       propertyPath: m_RootOrder
       value: 0

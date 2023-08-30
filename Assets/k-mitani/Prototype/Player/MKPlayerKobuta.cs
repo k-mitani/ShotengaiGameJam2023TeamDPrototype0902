@@ -8,14 +8,13 @@ public class MKPlayerKobuta : MonoBehaviour
 {
     [field: SerializeField] public MKKobutaType Type { get; private set; }
     [SerializeField] private MKPlayerBullet m_bulletPrefab;
-    [field: SerializeField] public int BulletCountMax { get; private set; } = 3;
     [field: SerializeField] public float AutoShootIntervalMax { get; private set; } = 0.25f;
+    [SerializeField] public MKPlayer player;
 
     private SpriteRenderer m_renderer;
     private Vector3 m_bulletPositionOffset = new Vector3(0.5f, 0, 0);
     public bool IsDamaged { get; set; } = false;
 
-    private List<MKPlayerBullet> m_bullets = new List<MKPlayerBullet>();
     private float m_autoShootInterval = 0f;
 
     private float m_damagedMutekiDurationMax = 2.0f;
@@ -74,21 +73,21 @@ public class MKPlayerKobuta : MonoBehaviour
         }
     }
 
-    public bool CanShoot() => m_bullets.Count < BulletCountMax;
+    public bool CanShoot() => player.CanShoot;
     public bool CanAutoShoot() => CanShoot() && m_autoShootInterval <= 0;
 
     public void Shoot()
     {
         var bullet = Instantiate(m_bulletPrefab, transform.position + m_bulletPositionOffset, Quaternion.identity);
         bullet.Initialize(this);
-        m_bullets.Add(bullet);
+        player.OnBulletShoot(bullet);
         m_autoShootInterval = AutoShootIntervalMax;
         MKSoundManager.Instance.PlaySePlayerShoot();
     }
 
     public void OnBulletDestroy(MKPlayerBullet bullet)
     {
-        m_bullets.Remove(bullet);
+        player.OnBulletDestroy(bullet);
     }
 
 
