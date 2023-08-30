@@ -48,12 +48,12 @@ public class LoadingSceneManager : MonoBehaviour
 
     private IEnumerator DoTransition()
     {
-        yield return new WaitForSeconds(1f);
         prevSceneCurtainClosed = false;
+        StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
+        yield return new WaitForSeconds(1f);
         curtain.Close(() =>
         {
             prevSceneCurtainClosed = true;
         });
-        yield return LoadSceneAsyncCoroutine(sceneName);
     }
 }
