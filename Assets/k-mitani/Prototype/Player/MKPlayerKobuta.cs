@@ -93,6 +93,8 @@ public class MKPlayerKobuta : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (MKUIManager.Instance.IsGameOver) return;
+
         // ‰ñ•œƒAƒCƒeƒ€‚Ìê‡
         if (collision.TryGetComponent(out LifeUpItem item))
         {

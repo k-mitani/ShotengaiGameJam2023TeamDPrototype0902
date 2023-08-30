@@ -34,6 +34,8 @@ public class MKKingKobutaFace : MonoBehaviour
 
     public void OnHit(MKPlayerBullet bullet, float moveDistance)
     {
+        if (MKUIManager.Instance.IsGameOver) return;
+
         var favorite = IsColorMatched(bullet);
 
         var damage = favorite ? 3 : 1;
