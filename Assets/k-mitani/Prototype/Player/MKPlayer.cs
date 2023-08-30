@@ -137,6 +137,8 @@ public class MKPlayer : MKPlayerFormationUnit
 
     private void Kobuta_Damaged(object sender, EventArgs e)
     {
+        if (MKUIManager.Instance.IsGameOver) return;
+
         // 全部のコブタがやられたらゲームオーバー
         var gameOver = Kobuta.IsDamaged && m_option1.Kobuta.IsDamaged && m_option2.Kobuta.IsDamaged;
         if (gameOver)
@@ -154,6 +156,8 @@ public class MKPlayer : MKPlayerFormationUnit
     private LifeUpItem prevGainedItem;
     private void Kobuta_HealItemGained(object sender, LifeUpItem item)
     {
+        if (MKUIManager.Instance.IsGameOver) return;
+
         // たまに複数のコブタで同時に当たり判定がおこなわれることがあるので対策する。
         if (item == prevGainedItem) return;
         prevGainedItem = item;

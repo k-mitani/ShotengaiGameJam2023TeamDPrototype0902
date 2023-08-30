@@ -75,6 +75,7 @@ public class MKUIManager : MonoBehaviour
 
     public void OnGameOver()
     {
+        if (IsGameOver) return;
         StartCoroutine(DoGameOver());
     }
 
@@ -181,6 +182,7 @@ public class MKUIManager : MonoBehaviour
 
     internal void OnGameClear()
     {
+        if (IsGameOver) return;
         StartCoroutine(GameClear());
     }
 

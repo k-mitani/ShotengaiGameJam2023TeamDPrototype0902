@@ -19,6 +19,7 @@ public class MKItemSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
+            if (MKUIManager.Instance.IsGameOver) continue;
 
             var anyDamaged =
                 player.Kobuta.IsDamaged ||
