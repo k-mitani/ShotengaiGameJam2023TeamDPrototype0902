@@ -204,7 +204,7 @@ public class StageClearSceneManager : MonoBehaviour
         }
 
         var query = new YieldableNcmbQuery<NCMBObject>(rankingInfo.ClassName);
-        query.Limit = 30;
+        query.Limit = 1000;
         query.OrderByDescending(RankingSceneManager.COLUMN_SCORE);
         yield return query.FindAsync();
 
