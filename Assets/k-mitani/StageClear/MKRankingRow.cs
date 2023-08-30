@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class MKRankingRow : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI rank;
-    [SerializeField] private TextMeshProUGUI userName;
-    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] public TextMeshProUGUI rank;
+    [SerializeField] public TextMeshProUGUI userName;
+    [SerializeField] public TextMeshProUGUI score;
 
     public void SetData(int rank, string userName, int score, Color color)
     {

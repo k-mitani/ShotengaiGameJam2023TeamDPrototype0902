@@ -44,6 +44,7 @@ public class StageClearSceneManager : MonoBehaviour
 
     private bool scoreSent = false;
     private const int MaxNameLength = 15;
+    private MKRankingRow myRankingRow;
 
     public void OnGojuonClick(Button button)
     {
@@ -123,6 +124,8 @@ public class StageClearSceneManager : MonoBehaviour
                                 dialogEndGame.cancelButton.gameObject.SetActive(false);
                                 ShowEndGameDialog();
                                 // スコアを送信する。
+                                var name = gojuonInputName.text;
+                                if (string.IsNullOrEmpty(name)) name = "ななし";
                                 SendScore(score, gojuonInputName.text, errorMessage =>
                                 {
                                     // スコア送信完了後
@@ -130,6 +133,10 @@ public class StageClearSceneManager : MonoBehaviour
                                     {
                                         scoreSent = true;
                                         dialogEndGame.message.text = "スコア送信完了！\nおつかれさまでした！";
+                                        if (myRankingRow != null)
+                                        {
+                                            myRankingRow.userName.text = name;
+                                        }
                                     }
                                     else
                                     {
@@ -268,6 +275,10 @@ public class StageClearSceneManager : MonoBehaviour
                 row.SetData(item.rank, item.name, item.score, item.isMine ?
                     Color.yellow : Color.white);
                 row.Show();
+                if (item.isMine)
+                {
+                    myRankingRow = row;
+                }
             }
         }
     }
