@@ -29,6 +29,8 @@ public class MKUIManager : MonoBehaviour
 
     [SerializeField] private GameObject m_pausePanel;
 
+    [SerializeField] private GameObject m_stageClearPanel;
+
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
     private List<IDisposable> disposables = new List<IDisposable>();
@@ -185,8 +187,11 @@ public class MKUIManager : MonoBehaviour
     private IEnumerator GameClear()
     {
         IsGameOver = true;
+        yield return new WaitForSeconds(1);
+        MKSoundManager.Instance.PlaySeStageClear();
+        m_stageClearPanel.SetActive(true);
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
         StageClearSceneManager.Parameter = new StageClearSceneManager.SceneParameter()
         {
             Score = m_score,

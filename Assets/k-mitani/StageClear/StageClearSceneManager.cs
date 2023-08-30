@@ -287,6 +287,17 @@ public class StageClearSceneManager : MonoBehaviour
                 }
             }
 
+            StartCoroutine(PlaySounds());
+            IEnumerator PlaySounds()
+            {
+                MKSoundManager.Instance.SetBGMVolume(0.6f);
+                MKSoundManager.Instance.PlaySeShowRanking();
+                yield return new WaitForSeconds(0.9f);
+                MKSoundManager.Instance.PlaySeCheers();
+                yield return new WaitForSeconds(4.0f);
+                MKSoundManager.Instance.SetBGMVolume(1f);
+            }
+
             yourRank.text = myRank.ToString();
             rankCount.text = "/ " + (query.Count + 1).ToString();
             if (myRank == 1)

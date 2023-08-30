@@ -36,6 +36,18 @@ public class MKSoundManager : MonoBehaviour
     [SerializeField] private AudioClip seBossAlert;
     public void PlaySeBossAlert() => PlayBattleSe(seBossAlert, 0.6f);
 
+    [SerializeField] private AudioClip seStageClear;
+    public void PlaySeStageClear() => PlaySe(seStageClear, dontDestroyOnLoad: true);
+
+    [SerializeField] private AudioClip seShowRanking;
+    public void PlaySeShowRanking() => PlaySe(seShowRanking);
+
+    [SerializeField] private AudioClip seCheers;
+    public void PlaySeCheers() => PlaySe(seCheers);
+
+    [SerializeField] private AudioClip seSceneChange;
+    public void PlaySeSceneChange() => PlaySe(seSceneChange, dontDestroyOnLoad: true);
+
 
     private void Awake()
     {
@@ -96,9 +108,10 @@ public class MKSoundManager : MonoBehaviour
         PlaySe(clip, volume);
     }
 
-    private void PlaySe(AudioClip clip, float? volume = null)
+    private void PlaySe(AudioClip clip, float? volume = null, bool dontDestroyOnLoad = false)
     {
         var player = Instantiate(playerPrefab);
+        if (dontDestroyOnLoad) DontDestroyOnLoad(player);
         player.Play(clip, false, true);
         if (volume != null)
         {
