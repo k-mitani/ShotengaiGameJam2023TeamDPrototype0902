@@ -35,9 +35,21 @@ public class MKPlayer : MKPlayerFormationUnit
         Instance = this;
         m_input = new MKPrototypeInputAction();
         m_input.Enable();
-        m_input.Player.Rearrange.performed += _ => Rearrange();
-        m_input.Player.Pause.performed += _ => MKUIManager.Instance.TogglePause();
-        m_input.UI.Pause.performed += _ => MKUIManager.Instance.TogglePause();
+        m_input.Player.Rearrange.performed += _ =>
+        {
+            if (MKUIManager.Instance.IsDemo) return;
+            Rearrange();
+        };
+        m_input.Player.Pause.performed += _ =>
+        {
+            if (MKUIManager.Instance.IsDemo) return;
+            MKUIManager.Instance.TogglePause();
+        };
+        m_input.UI.Pause.performed += _ =>
+        {
+            if (MKUIManager.Instance.IsDemo) return;
+            MKUIManager.Instance.TogglePause();
+        };
         SetUiMode(false);
     }
 
@@ -93,6 +105,8 @@ public class MKPlayer : MKPlayerFormationUnit
     /// </summary>
     private void Shoot()
     {
+        if (MKUIManager.Instance.IsDemo) return;
+
         var fireButton = m_input.Player.Fire.IsPressed();
         // 前フレームで押されていなくて、今フレームで押された場合
         if (!m_prevFireButton && fireButton)
