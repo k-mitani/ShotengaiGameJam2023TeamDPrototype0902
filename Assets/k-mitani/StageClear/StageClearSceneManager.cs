@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +40,10 @@ public class StageClearSceneManager : MonoBehaviour
     [SerializeField] private MKDialog dialogEndGame;
     [Header("Other")]
     [SerializeField] private RankingInfo rankingInfo;
+    [Header("Comments")]
+    [SerializeField] private string[] commentsNo1;
+    [SerializeField] private string[] commentsNo2ToNo10;
+    [SerializeField] private string[] commentsNo11ToEnd;
 
     private bool scoreSent = false;
     private const int MaxNameLength = 15;
@@ -53,7 +56,7 @@ public class StageClearSceneManager : MonoBehaviour
 
         if (moji.Equals("削除"))
         {
-            text = text.Substring(0, Math.Max(0, text.Length - 1));
+            text = text.Substring(0, Mathf.Max(0, text.Length - 1));
             Debug.Log(gojuonInputName.text);
         }
         else
@@ -71,7 +74,7 @@ public class StageClearSceneManager : MonoBehaviour
         Debug.Log(moji);
     }
 
-    private List<IDisposable> disposables = new List<IDisposable>();
+    private List<System.IDisposable> disposables = new List<System.IDisposable>();
 
     private List<InputAction> inputActionsDefault;
     private InputAction inputAction01WaitKey;
@@ -204,18 +207,12 @@ public class StageClearSceneManager : MonoBehaviour
         }
         else
         {
-            rankCount.text = "/ " + (query.Count + 1).ToString();
-            comment.text = "えらいっ！";
-
             var rows = query.Result.Select((r, i) => new RankingItem
             {
                 rank = i + 1,
                 name = (string)r[RankingSceneManager.COLUMN_NAME],
                 score = (int)(long)r[RankingSceneManager.COLUMN_SCORE],
             }).ToList();
-
-            var myRank = rows.Count(r => r.score > myScore) + 1;
-            yourRank.text = myRank.ToString();
 
             // 自分より高いスコア4つを取得する。
             var nearAbove4 = rows
@@ -249,6 +246,7 @@ public class StageClearSceneManager : MonoBehaviour
                     remainingCount--;
                 }
             }
+            var myRank = rows.Count(r => r.score > myScore) + 1;
             var myScoreItem = new RankingItem()
             {
                 rank = myRank,
@@ -280,6 +278,27 @@ public class StageClearSceneManager : MonoBehaviour
                     myRankingRow = row;
                 }
             }
+
+            yourRank.text = myRank.ToString();
+            rankCount.text = "/ " + (query.Count + 1).ToString();
+            if (myRank == 1)
+            {
+                comment.text = commentsNo1[Random.Range(0, commentsNo1.Length)];
+                StartCoroutine(Takeshi());
+                IEnumerator Takeshi()
+                {
+                    yield return new WaitForSeconds(60 * 5);
+                    comment.text = "このゲームで遊んでくれてありがとう";
+                }
+            }
+            else if (myRank <= 10)
+            {
+                comment.text = commentsNo2ToNo10[Random.Range(0, commentsNo2ToNo10.Length)];
+            }
+            else
+            {
+                comment.text = commentsNo11ToEnd[Random.Range(0, commentsNo11ToEnd.Length)];
+            }
         }
     }
     private struct RankingItem
@@ -290,7 +309,7 @@ public class StageClearSceneManager : MonoBehaviour
         public bool isMine;
     }
 
-    private void SendScore(int score, string name, Action<string> onFinished)
+    private void SendScore(int score, string name, System.Action<string> onFinished)
     {
         var calledCallback = false;
 
