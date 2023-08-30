@@ -102,37 +102,8 @@ public class MKUIManager : MonoBehaviour
         };
 
         m_gameOverPanel.SetActive(true);
-        StartCoroutine(BlinkGameOverText());
+        StartCoroutine(MKUtil.BlinkText(m_gameOverText, gameOverBlinkDurationMax));
         StartCoroutine(WaitAndMoveToTitle());
-    }
-
-    private IEnumerator BlinkGameOverText()
-    {
-        var a = 0f;
-        var originalColor = m_gameOverText.color;
-        m_gameOverText.color = originalColor * new Color(1, 1, 1, a);
-        while (true)
-        {
-            var gameOverBlinkDuration = gameOverBlinkDurationMax;
-            while (true)
-            {
-                yield return null;
-                gameOverBlinkDuration -= Time.deltaTime;
-                if (gameOverBlinkDuration <= 0) break;
-                a = 1 - gameOverBlinkDuration / gameOverBlinkDurationMax;
-                m_gameOverText.color = originalColor * new Color(1, 1, 1, a);
-            }
-            yield return new WaitForSeconds(0.3f);
-            gameOverBlinkDuration = gameOverBlinkDurationMax;
-            while (true)
-            {
-                yield return null;
-                gameOverBlinkDuration -= Time.deltaTime;
-                if (gameOverBlinkDuration <= 0) break;
-                a = gameOverBlinkDuration / gameOverBlinkDurationMax;
-                m_gameOverText.color = originalColor * new Color(1, 1, 1, a);
-            }
-        }
     }
 
     private IEnumerator WaitAndMoveToTitle()

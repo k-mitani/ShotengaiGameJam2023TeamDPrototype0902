@@ -185,7 +185,7 @@ public class StageClearSceneManager : MonoBehaviour
         }
 
         //naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
-        StartCoroutine(BlinkPressAnyButtonText());
+        StartCoroutine(MKUtil.BlinkText(pressAnyButton, pressAnyButtonBlinkDurationMax));
         inputAction01WaitKey.Enable();
     }
 
@@ -386,35 +386,6 @@ public class StageClearSceneManager : MonoBehaviour
                     break;
             }
         });
-    }
-
-    private IEnumerator BlinkPressAnyButtonText()
-    {
-        var a = 0f;
-        var originalColor = pressAnyButton.color;
-        pressAnyButton.color = originalColor * new Color(1, 1, 1, a);
-        while (true)
-        {
-            var pressAnyButtonBlinkDuration = pressAnyButtonBlinkDurationMax;
-            while (true)
-            {
-                yield return null;
-                pressAnyButtonBlinkDuration -= Time.deltaTime;
-                if (pressAnyButtonBlinkDuration <= 0) break;
-                a = 1 - pressAnyButtonBlinkDuration / pressAnyButtonBlinkDurationMax;
-                pressAnyButton.color = originalColor * new Color(1, 1, 1, a);
-            }
-            yield return new WaitForSeconds(0.3f);
-            pressAnyButtonBlinkDuration = pressAnyButtonBlinkDurationMax;
-            while (true)
-            {
-                yield return null;
-                pressAnyButtonBlinkDuration -= Time.deltaTime;
-                if (pressAnyButtonBlinkDuration <= 0) break;
-                a = pressAnyButtonBlinkDuration / pressAnyButtonBlinkDurationMax;
-                pressAnyButton.color = originalColor * new Color(1, 1, 1, a);
-            }
-        }
     }
 
     private void OnDestroy()

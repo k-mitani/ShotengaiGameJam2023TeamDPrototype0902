@@ -30,36 +30,7 @@ public class TitleSceneManager : MonoBehaviour
             StartCoroutine(LoadingSceneManager.LoadCoroutine("MKPrototypeScene", curtain));
         };
 
-        StartCoroutine(BlinkText());
-    }
-
-    private IEnumerator BlinkText()
-    {
-        var a = 0f;
-        var originalColor = pressAnyKey.color;
-        pressAnyKey.color = originalColor * new Color(1, 1, 1, a);
-        while (true)
-        {
-            var gameOverBlinkDuration = textBlinkDurationMax;
-            while (true)
-            {
-                yield return null;
-                gameOverBlinkDuration -= Time.deltaTime;
-                if (gameOverBlinkDuration <= 0) break;
-                a = 1 - gameOverBlinkDuration / textBlinkDurationMax;
-                pressAnyKey.color = originalColor * new Color(1, 1, 1, a);
-            }
-            yield return new WaitForSeconds(0.3f);
-            gameOverBlinkDuration = textBlinkDurationMax;
-            while (true)
-            {
-                yield return null;
-                gameOverBlinkDuration -= Time.deltaTime;
-                if (gameOverBlinkDuration <= 0) break;
-                a = gameOverBlinkDuration / textBlinkDurationMax;
-                pressAnyKey.color = originalColor * new Color(1, 1, 1, a);
-            }
-        }
+        StartCoroutine(MKUtil.BlinkText(pressAnyKey, textBlinkDurationMax));
     }
 
     private void OnDestroy()
