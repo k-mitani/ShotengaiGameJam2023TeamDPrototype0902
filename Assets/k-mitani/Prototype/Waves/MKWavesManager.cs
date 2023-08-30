@@ -12,7 +12,16 @@ public class MKWavesManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_waves = GetComponentsInChildren<MKWaveBase>(true);
+        var childCount = transform.childCount;
+        var childWaves = new List<MKWaveBase>();
+        for (int i = 0; i < childCount; i++)
+        {
+            if (transform.GetChild(i).TryGetComponent<MKWaveBase>(out var childWave))
+            {
+                childWaves.Add(childWave);
+            }
+        }
+        m_waves = childWaves.ToArray();
         foreach (var wave in m_waves)
         {
             wave.WaveClear += OnWaveClear;
