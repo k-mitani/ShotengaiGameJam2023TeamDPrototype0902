@@ -43,6 +43,7 @@ public class StageClearSceneManager : MonoBehaviour
     [SerializeField] private RankingInfo rankingInfo;
 
     private bool scoreSent = false;
+    private const int MaxNameLength = 15;
 
     public void OnGojuonClick(Button button)
     {
@@ -56,9 +57,9 @@ public class StageClearSceneManager : MonoBehaviour
         }
         else
         {
-            if (text.Length > 6)
+            if (text.Length > MaxNameLength - 1)
             {
-                text = text.Substring(0, 6) + moji;
+                text = text.Substring(0, MaxNameLength - 1) + moji;
             }
             else
             {
