@@ -33,6 +33,13 @@ public class MKUIManager : MonoBehaviour
 
     [field: SerializeField] public bool IsDemo { get; private set; } = false;
 
+    [field: SerializeField] public int BonusWaveScoreThreshold { get; private set; } = 25000;
+
+    public bool GoodScore { get; private set; } = false;
+    public bool IsNoMiss { get; private set; } = true;
+    private HashSet<string> m_setWavesBeforeBonus = new() { "Wave1", "Wave2", "Wave3", "Wave4", };
+    public bool BonusWaveGained { get; set; } = false;
+
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
     private List<IDisposable> disposables = new List<IDisposable>();
@@ -48,6 +55,17 @@ public class MKUIManager : MonoBehaviour
 
         m_score = Math.Max(m_score + score, 0);
         UpdateScoreText();
+
+        var wave = MKWavesManager.Instance.CurrentWave;
+        if (!GoodScore && IsNoMiss & wave != null &&
+            m_setWavesBeforeBonus.Contains(wave.name) &&
+            m_score > BonusWaveScoreThreshold)
+        {
+            Debug.Log("GOOOOOD");
+            GoodScore = true;
+            MKSoundManager.Instance.PlaySePlayerHealed();
+            m_scoreText.color = Color.yellow;
+        }
     }
 
     public void RearrangeKobuta(MKPlayerKobuta p1, MKPlayerKobuta p2, MKPlayerKobuta p3)
@@ -69,6 +87,16 @@ public class MKUIManager : MonoBehaviour
     public void SetKobutaDamaged(MKKobutaType type, bool damaged)
     {
         if (IsDemo) return;
+
+        if (damaged)
+        {
+            IsNoMiss = false;
+            var wave = MKWavesManager.Instance.CurrentWave;
+            if (wave != null && m_setWavesBeforeBonus.Contains(wave.name))
+            {
+                m_scoreText.color = Color.white;
+            }
+        }
 
         m_lifes[(int)type].color = damaged ? new Color(1, 1, 1, 0.4f) : new Color(1, 1, 1, 1);
 

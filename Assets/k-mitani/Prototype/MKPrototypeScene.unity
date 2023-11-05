@@ -1366,6 +1366,7 @@ MonoBehaviour:
   m_pausePanel: {fileID: 2016024339}
   m_stageClearPanel: {fileID: 1924516554}
   <IsDemo>k__BackingField: 0
+  <BonusWaveScoreThreshold>k__BackingField: 25000
 --- !u!4 &109482794
 Transform:
   m_ObjectHideFlags: 0
