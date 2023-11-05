@@ -69,7 +69,7 @@ namespace NCMB.Internal
 		private static readonly string HEADER_USER_AGENT_VALUE = "unity-" + CommonConstant.SDK_VERSION;
 
 		// time out 10 sec
-		private static readonly int REQUEST_TIME_OUT = 10;
+		private static readonly int REQUEST_TIME_OUT = 4;
 
 		private string _applicationKey = "";
 		private string _clientKey = "";

@@ -204,18 +204,30 @@ public class StageClearSceneManager : MonoBehaviour
             row.Hide();
         }
 
-        var query = new YieldableNcmbQuery<NCMBObject>(rankingInfo.ClassName);
-        query.Limit = 1000;
-        query.OrderByDescending(RankingSceneManager.COLUMN_SCORE);
-        yield return query.FindAsync();
-
-        Debug.Log("データ取得 : " + query.Count.ToString() + "件");
+        // 3回までリトライする。
+        var retryCount = 3;
+        var query = default(YieldableNcmbQuery<NCMBObject>);
+        for (int i = 0; i < retryCount; i++)
+        {
+            query = new YieldableNcmbQuery<NCMBObject>(rankingInfo.ClassName);
+            query.Limit = 1000;
+            query.OrderByDescending(RankingSceneManager.COLUMN_SCORE);
+            yield return query.FindAsync();
+            if (query.Error != null)
+            {
+                comment.text += ".";
+                Debug.Log("ランキング取得エラー : " + query.Error.Message);
+                continue;
+            }
+            break;
+        }
         if (query.Error != null)
         {
             comment.text = "（ランキング取得エラー！）\n" + query.Error.Message;
         }
         else
         {
+            Debug.Log("データ取得 : " + query.Count.ToString() + "件");
             var rows = query.Result.Select((r, i) => new RankingItem
             {
                 rank = i + 1,
