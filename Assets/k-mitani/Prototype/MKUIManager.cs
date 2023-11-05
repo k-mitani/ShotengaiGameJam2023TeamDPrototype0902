@@ -35,10 +35,12 @@ public class MKUIManager : MonoBehaviour
 
     [field: SerializeField] public int BonusWaveScoreThreshold { get; private set; } = 25000;
 
+    [SerializeField] private GameObject m_stageClearPanel2;
+
     public bool GoodScore { get; private set; } = false;
     public bool IsNoMiss { get; private set; } = true;
     private HashSet<string> m_setWavesBeforeBonus = new() { "Wave1", "Wave2", "Wave3", "Wave4", };
-    public bool BonusWaveGained { get; set; } = false;
+    [field: SerializeField] public bool BonusWaveGained { get; set; } = false;
 
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
@@ -209,8 +211,9 @@ public class MKUIManager : MonoBehaviour
         IsGameOver = true;
         yield return new WaitForSeconds(1);
         MKSoundManager.Instance.PlaySeStageClear();
-        m_stageClearPanel.SetActive(true);
-
+        
+        if (BonusWaveGained) m_stageClearPanel2.SetActive(true);
+        else m_stageClearPanel.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         StageClearSceneManager.Parameter = new StageClearSceneManager.SceneParameter()
         {
