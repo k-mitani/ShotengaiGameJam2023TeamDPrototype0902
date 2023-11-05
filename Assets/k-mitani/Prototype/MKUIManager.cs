@@ -218,6 +218,7 @@ public class MKUIManager : MonoBehaviour
         StageClearSceneManager.Parameter = new StageClearSceneManager.SceneParameter()
         {
             Score = m_score,
+            BonusWaveGained = BonusWaveGained,
         };
         StartCoroutine(LoadingSceneManager.LoadCoroutine("StageClearScene", curtain));
     }

@@ -18,6 +18,7 @@ public class StageClearSceneManager : MonoBehaviour
     public class SceneParameter
     {
         public int Score { get; set; }
+        public bool BonusWaveGained { get; set; }
     }
 
     private static string s_prevInputName = "";
@@ -310,7 +311,7 @@ public class StageClearSceneManager : MonoBehaviour
                     comment.text = "‚±‚ÌƒQ[ƒ€‚Å—V‚ñ‚Å‚­‚ê‚Ä‚ ‚è‚ª‚Æ‚¤";
                 }
             }
-            else if (myRank <= 10)
+            else if (Parameter?.BonusWaveGained ?? false)
             {
                 comment.text = commentsNo2ToNo10[Random.Range(0, commentsNo2ToNo10.Length)];
             }
