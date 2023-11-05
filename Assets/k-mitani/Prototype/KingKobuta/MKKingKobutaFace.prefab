@@ -133,6 +133,9 @@ MonoBehaviour:
   m_kingKobuta: {fileID: 0}
   m_deadFaceImage: {fileID: 0}
   os: {fileID: 3448152939321936992}
+  m_weakFireballScale: 0.8
+  m_weakFireballDecayScale: 0.99
+  m_wakeFireballDecayDelay: 3.5
 --- !u!58 &5106374214803844405
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -15,6 +15,23 @@ public class MKWaveKingKobuta : MKWaveBase
         StartCoroutine(MoveToX0());
         StartCoroutine(Alert());
         m_kingKobuta.AllFaceDead += kingKobuta_AllFaceDead;
+
+        // ボーナスウェーブを経ていなければ弱体化させる。
+        if (!MKUIManager.Instance.BonusWaveGained)
+        {
+            m_kingKobuta.Weaken();
+        }
+        StartCoroutine(LongTimeAdjustment());
+    }
+
+    private IEnumerator LongTimeAdjustment()
+    {
+        yield return new WaitForSeconds(60 * 1);
+        while (true)
+        {
+            m_kingKobuta.Weaken();
+            yield return new WaitForSeconds(30);
+        }
     }
 
     private IEnumerator Alert()

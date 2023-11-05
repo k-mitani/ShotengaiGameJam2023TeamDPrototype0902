@@ -49,5 +49,15 @@ public class MKKingKobuta : MonoBehaviour
         }
     }
 
+    internal void Weaken()
+    {
+        foreach (var face in m_faces)
+        {
+            if (face.IsDead) continue;
+            face.hp = (int)Math.Ceiling(face.hp * 0.5f);
+            face.IsWeak = true;
+        }
+    }
+
     public bool IsAllDead => m_faces.All(f => f.hp <= 0);
 }

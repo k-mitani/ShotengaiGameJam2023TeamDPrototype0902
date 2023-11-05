@@ -24,6 +24,11 @@ public class MKKingKobutaFace : MonoBehaviour
     public bool ShouldPause => m_kingKobuta.ShouldPause;
     public bool IsDead => hp <= 0;
     public event EventHandler Dead;
+    
+    public bool IsWeak { get; set; } = false;
+    [SerializeField] private float m_weakFireballScale = 0.75f;
+    [SerializeField] private float m_weakFireballDecayScale = 0.99f;
+    [SerializeField] private float m_wakeFireballDecayDelay = 3.0f;
 
     private void Awake()
     {
@@ -96,6 +101,12 @@ public class MKKingKobutaFace : MonoBehaviour
         var fb = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
         fb.m_velocity = (m_player.transform.position - fb.transform.position).normalized;
         //fireball.Initialize(m_colorType);
+        if (IsWeak)
+        {
+            fb.transform.localScale *= m_weakFireballScale;
+            fb.ScaleDecay = m_weakFireballDecayScale;
+            fb.DecayDelayTime = m_wakeFireballDecayDelay;
+        }
     }
 
     public void Shoot3()
@@ -107,11 +118,34 @@ public class MKKingKobutaFace : MonoBehaviour
         fb2.m_velocity = Quaternion.Euler(0, 0, +30) * velocity;
         var fb3 = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
         fb3.m_velocity = Quaternion.Euler(0, 0, -30) * velocity;
+        if (IsWeak)
+        {
+            fb.transform.localScale *= m_weakFireballScale;
+            fb2.transform.localScale *= m_weakFireballScale;
+            fb3.transform.localScale *= m_weakFireballScale;
+
+            fb.transform.localScale *= m_weakFireballScale;
+            fb.ScaleDecay = m_weakFireballDecayScale;
+            fb.DecayDelayTime = m_wakeFireballDecayDelay;
+            fb2.transform.localScale *= m_weakFireballScale;
+            fb2.ScaleDecay = m_weakFireballDecayScale;
+            fb2.DecayDelayTime = m_wakeFireballDecayDelay;
+            fb3.transform.localScale *= m_weakFireballScale;
+            fb3.ScaleDecay = m_weakFireballDecayScale;
+            fb3.DecayDelayTime = m_wakeFireballDecayDelay;
+        }
     }
 
     public void ShootFast()
     {
         var fb = Instantiate(m_fireballPrefab, m_fireballStartPosition.position, Quaternion.identity);
         fb.m_velocity = (m_player.transform.position - fb.transform.position).normalized * 3;
+        if (IsWeak)
+        {
+            fb.transform.localScale *= m_weakFireballScale;
+            fb.transform.localScale *= m_weakFireballScale;
+            fb.ScaleDecay = m_weakFireballDecayScale;
+            fb.DecayDelayTime = m_wakeFireballDecayDelay;
+        }
     }
 }
