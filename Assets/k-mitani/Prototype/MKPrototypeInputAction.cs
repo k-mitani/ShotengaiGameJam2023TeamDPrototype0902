@@ -211,7 +211,7 @@ public partial class @MKPrototypeInputAction : IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -321,7 +321,7 @@ public partial class @MKPrototypeInputAction : IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""37367a50-17d8-45f4-bbb0-670ed0a6fc6b"",
-                    ""path"": ""<Mouse>/middleButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
