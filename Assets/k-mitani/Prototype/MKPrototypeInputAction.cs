@@ -746,6 +746,17 @@ public partial class @MKPrototypeInputAction : IInputActionCollection2, IDisposa
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7d85343f-ff39-444c-b6cf-b7907712405e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""82627dcc-3b13-4ba9-841d-e4b746d6553e"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
