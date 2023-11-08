@@ -66,7 +66,7 @@ public class MKWavesManager : MonoBehaviour
         var nextIndex = index + 1;
 
         // Wave4のクリア時の場合、ボーナスウェーブ(Wave5)に進むか判定する。
-        if (wave.name.Equals("Wave4"))
+        if (!MKUIManager.Instance.IsDemo && wave.name.Equals("Wave4"))
         {
             var nomiss = MKUIManager.Instance.IsNoMiss;
             var goodScore = MKUIManager.Instance.GoodScore;
