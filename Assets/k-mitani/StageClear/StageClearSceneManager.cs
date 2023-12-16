@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using naichilab;
-using NCMB;
-using NCMB.Extensions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class StageClearSceneManager : MonoBehaviour
@@ -22,6 +20,11 @@ public class StageClearSceneManager : MonoBehaviour
     }
 
     private static string s_prevInputName = "";
+
+    private const string BackendApiUrl = "https://7l6g78qz52.execute-api.ap-northeast-1.amazonaws.com/default/SanbutaShooting";
+    private const string BackendApiKey = "";
+    private const string ENCRYPT_KEY = "";
+    private const string ENCRYPT_IV = "";
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI yourScore;
@@ -206,33 +209,57 @@ public class StageClearSceneManager : MonoBehaviour
 
         // 3回までリトライする。
         var retryCount = 3;
-        var query = default(YieldableNcmbQuery<NCMBObject>);
+        var query = default(UnityWebRequest);
+        var startTime = Time.time;
         for (int i = 0; i < retryCount; i++)
         {
-            query = new YieldableNcmbQuery<NCMBObject>(rankingInfo.ClassName);
-            query.Limit = 1000;
-            query.OrderByDescending(RankingSceneManager.COLUMN_SCORE);
-            yield return query.FindAsync();
-            if (query.Error != null)
+            var req = new Request { Operation = "list" };
+            query = CreateWebRequest(req);
+            yield return query.SendWebRequest();
+            if (query.result != UnityWebRequest.Result.Success)
             {
                 comment.text += ".";
-                Debug.Log("ランキング取得エラー : " + query.Error.Message);
+                Debug.Log("ランキング取得エラー : " + query.error);
                 continue;
             }
             break;
         }
-        if (query.Error != null)
+        var elapsed = Time.time - startTime;
+        Debug.Log($"ランキング取得時間: {elapsed}秒");
+        // 1秒未満の場合は1秒待つ。
+        if (elapsed < 1)
         {
-            comment.text = "（ランキング取得エラー！）\n" + query.Error.Message;
+            yield return new WaitForSeconds(1 - elapsed);
         }
-        else
+        if (query.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log("データ取得 : " + query.Count.ToString() + "件");
-            var rows = query.Result.Select((r, i) => new RankingItem
+            comment.text = "（ランキング取得エラー！）\n" + query.error;
+            yield break;
+        }
+        var res = default(Response);
+        try
+        {
+            Debug.Log("ランキング応答: " + query.downloadHandler.text);
+            res = JsonUtility.FromJson<Response>(query.downloadHandler.text);
+            if (res.Error != null)
+            {
+                throw new System.Exception(res.Error);
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("ランキング応答エラー: " + e.Message);
+            comment.text = "（ランキング応答エラー！）\n" + e.Message;
+            yield break;
+        }
+
+        {
+            Debug.Log("データ取得: " + res.ListResult.Count + "件");
+            var rows = res.ListResult.OrderByDescending(s => s.Score).Select((s, i) => new RankingItem
             {
                 rank = i + 1,
-                name = (string)r[RankingSceneManager.COLUMN_NAME],
-                score = (int)(long)r[RankingSceneManager.COLUMN_SCORE],
+                name = s.Name,
+                score = s.Score,
             }).ToList();
 
             // 自分より高いスコア4つを取得する。
@@ -312,7 +339,7 @@ public class StageClearSceneManager : MonoBehaviour
             }
 
             yourRank.text = myRank.ToString();
-            rankCount.text = "/ " + (query.Count + 1).ToString();
+            rankCount.text = "/ " + (rows.Count + 1).ToString();
             if (myRank == 1)
             {
                 comment.text = commentsNo1[Random.Range(0, commentsNo1.Length)];
@@ -357,22 +384,42 @@ public class StageClearSceneManager : MonoBehaviour
         StartCoroutine(DoWork());
         IEnumerator DoWork()
         {
-            var record = new NCMBObject(rankingInfo.ClassName);
-            record[RankingSceneManager.COLUMN_NAME] = name;
-            record[RankingSceneManager.COLUMN_SCORE] = score;
-
-            NCMBException errorResult = null;
-            yield return record.YieldableSaveAsync(error => errorResult = error);
+            var req = new Request()
+            {
+                Operation = "upsert",
+                UpsertParameter = new SanbutaShootingScore()
+                {
+                    Id = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    Name = name,
+                    Score = score,
+                },
+            };
+            req.Token = Encrypt(req.UpsertParameter.ToString());
+            var query = CreateWebRequest(req);
+            yield return query.SendWebRequest();
             if (calledCallback) yield break;
             calledCallback = true;
-            if (errorResult != null)
+            
+            if (query.result != UnityWebRequest.Result.Success)
             {
-                onFinished?.Invoke(errorResult?.Message);
+                onFinished?.Invoke(query.error);
+                yield break;
             }
-            else
+
+            var res = default(Response);
+            try
             {
-                onFinished?.Invoke(null);
+                Debug.Log("ランキング応答: " + query.downloadHandler.text);
+                res = JsonUtility.FromJson<Response>(query.downloadHandler.text);
+                if (res.Error != null) throw new System.Exception(res.Error);
             }
+            catch (System.Exception e)
+            {
+                onFinished?.Invoke(e.Message);
+                yield break;
+            }
+
+            onFinished?.Invoke(null);
         }
     }
 
@@ -408,4 +455,57 @@ public class StageClearSceneManager : MonoBehaviour
             d.Dispose();
         }
     }
+
+
+    private UnityWebRequest CreateWebRequest(Request req)
+    {
+        var json = JsonUtility.ToJson(req);
+        var bodyRaw = Encoding.UTF8.GetBytes(json);
+        var query = new UnityWebRequest(BackendApiUrl, "POST", new DownloadHandlerBuffer(), new UploadHandlerRaw(bodyRaw));
+        query.SetRequestHeader("Content-Type", "application/json");
+        query.SetRequestHeader("X-API-KEY", BackendApiKey);
+        return query;
+    }
+
+    public static string Encrypt(string plain)
+    {
+        using var aes = Aes.Create();
+        aes.Key = Encoding.UTF8.GetBytes(ENCRYPT_KEY);
+        aes.IV = Encoding.UTF8.GetBytes(ENCRYPT_IV);
+        using var encryptor = aes.CreateEncryptor();
+        var plainBytes = Encoding.UTF8.GetBytes(plain);
+        var encryptedBytes = encryptor.TransformFinalBlock(plainBytes, 0, plainBytes.Length);
+        return System.Convert.ToBase64String(encryptedBytes);
+    }
+
+    [System.Serializable]
+    public class Request
+    {
+        public const string OperationList = "list";
+        public const string OperationUpsert = "upsert";
+        public string Operation;
+        public string Token;
+        public SanbutaShootingScore UpsertParameter;
+
+        public override string ToString() => $"Operation: {Operation}, UpsertParameter: {UpsertParameter}";
+    }
+
+    [System.Serializable]
+    public class SanbutaShootingScore
+    {
+        public string Id;
+        public string Name;
+        public int Score;
+
+        public override string ToString() => $"Id: {Id}, Name: {Name}, Score: {Score}";
+    }
+
+    [System.Serializable]
+    public class Response
+    {
+        public string Operation;
+        public string Error;
+        public List<SanbutaShootingScore> ListResult;
+    }
+
 }

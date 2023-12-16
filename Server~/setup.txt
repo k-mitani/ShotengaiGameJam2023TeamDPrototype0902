@@ -1,0 +1,5 @@
+# https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/csharp-package-cli.html
+dotnet new install Amazon.Lambda.Templates
+dotnet tool install -g Amazon.Lambda.Tools
+dotnet new list
+dotnet new lambda.DynamoDB -n SanbutaShooting -r ap-northeast-1
