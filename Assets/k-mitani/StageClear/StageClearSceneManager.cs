@@ -58,7 +58,7 @@ public class StageClearSceneManager : MonoBehaviour
         var moji = button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
         var text = gojuonInputName.text;
 
-        if (moji.Equals("íœ"))
+        if (moji.Equals("å‰Šé™¤"))
         {
             text = text.Substring(0, Mathf.Max(0, text.Length - 1));
             Debug.Log(gojuonInputName.text);
@@ -85,7 +85,7 @@ public class StageClearSceneManager : MonoBehaviour
 
     void Start()
     {
-        // 10•ªŒo‚Á‚½‚ç©“®‚Åƒ^ƒCƒgƒ‹‚ÉˆÚ“®‚·‚éB
+        // 10åˆ†çµŒã£ãŸã‚‰è‡ªå‹•ã§ã‚¿ã‚¤ãƒˆãƒ«ã«ç§»å‹•ã™ã‚‹ã€‚
         StartCoroutine(AutoMoveToTitle());
         IEnumerator AutoMoveToTitle()
         {
@@ -113,7 +113,7 @@ public class StageClearSceneManager : MonoBehaviour
 
             if (scoreSent)
             {
-                dialogEndGame.message.text = "ƒXƒRƒA‘—MŠ®—¹I\n‚¨‚Â‚©‚ê‚³‚Ü‚Å‚µ‚½I";
+                dialogEndGame.message.text = "ã‚¹ã‚³ã‚¢é€ä¿¡å®Œäº†ï¼\nãŠã¤ã‹ã‚Œã•ã¾ã§ã—ãŸï¼";
                 ShowEndGameDialog();
                 return;
             }
@@ -128,26 +128,26 @@ public class StageClearSceneManager : MonoBehaviour
                     case MKDialogResult.Yes:
                         s_prevInputName = gojuonInputName.text;
                         var bs = dialogInputName.transform.GetComponentsInChildren<Button>();
-                        var a = bs.FirstOrDefault(b => b.GetComponentInChildren<TextMeshProUGUI>().text.Equals("‚ "));
+                        var a = bs.FirstOrDefault(b => b.GetComponentInChildren<TextMeshProUGUI>().text.Equals("ã‚"));
                         a.Select();
                         dialogInputName.Show(r => {
                             if (r == MKDialogResult.Yes)
                             {
-                                dialogEndGame.message.text = "ƒXƒRƒA‘—M’†...";
+                                dialogEndGame.message.text = "ã‚¹ã‚³ã‚¢é€ä¿¡ä¸­...";
                                 dialogEndGame.yesButton.gameObject.SetActive(false);
                                 dialogEndGame.noButton.gameObject.SetActive(false);
                                 dialogEndGame.cancelButton.gameObject.SetActive(false);
                                 ShowEndGameDialog();
-                                // ƒXƒRƒA‚ğ‘—M‚·‚éB
+                                // ã‚¹ã‚³ã‚¢ã‚’é€ä¿¡ã™ã‚‹ã€‚
                                 var name = gojuonInputName.text;
-                                if (string.IsNullOrEmpty(name)) name = "‚È‚È‚µ";
+                                if (string.IsNullOrEmpty(name)) name = "ãªãªã—";
                                 SendScore(score, gojuonInputName.text, errorMessage =>
                                 {
-                                    // ƒXƒRƒA‘—MŠ®—¹Œã
+                                    // ã‚¹ã‚³ã‚¢é€ä¿¡å®Œäº†å¾Œ
                                     if (errorMessage == null)
                                     {
                                         scoreSent = true;
-                                        dialogEndGame.message.text = "ƒXƒRƒA‘—MŠ®—¹I\n‚¨‚Â‚©‚ê‚³‚Ü‚Å‚µ‚½I";
+                                        dialogEndGame.message.text = "ã‚¹ã‚³ã‚¢é€ä¿¡å®Œäº†ï¼\nãŠã¤ã‹ã‚Œã•ã¾ã§ã—ãŸï¼";
                                         if (myRankingRow != null)
                                         {
                                             myRankingRow.userName.text = name;
@@ -155,7 +155,7 @@ public class StageClearSceneManager : MonoBehaviour
                                     }
                                     else
                                     {
-                                        dialogEndGame.message.text = "IƒXƒRƒA‘—MƒGƒ‰[I\n" + errorMessage;
+                                        dialogEndGame.message.text = "ï¼ã‚¹ã‚³ã‚¢é€ä¿¡ã‚¨ãƒ©ãƒ¼ï¼\n" + errorMessage;
                                     }
                                     dialogEndGame.yesButton.gameObject.SetActive(true);
                                     dialogEndGame.noButton.gameObject.SetActive(true);
@@ -170,7 +170,7 @@ public class StageClearSceneManager : MonoBehaviour
                         });
                         break;
                     case MKDialogResult.No:
-                        dialogEndGame.message.text = "‚¨‚Â‚©‚ê‚³‚Ü‚Å‚µ‚½I";
+                        dialogEndGame.message.text = "ãŠã¤ã‹ã‚Œã•ã¾ã§ã—ãŸï¼";
                         ShowEndGameDialog();
                         break;
                     case MKDialogResult.Cancel:
@@ -207,7 +207,7 @@ public class StageClearSceneManager : MonoBehaviour
             row.Hide();
         }
 
-        // 3‰ñ‚Ü‚ÅƒŠƒgƒ‰ƒC‚·‚éB
+        // 3å›ã¾ã§ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹ã€‚
         var retryCount = 3;
         var query = default(UnityWebRequest);
         var startTime = Time.time;
@@ -219,27 +219,27 @@ public class StageClearSceneManager : MonoBehaviour
             if (query.result != UnityWebRequest.Result.Success)
             {
                 comment.text += ".";
-                Debug.Log("ƒ‰ƒ“ƒLƒ“ƒOæ“¾ƒGƒ‰[ : " + query.error);
+                Debug.Log("ãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—ã‚¨ãƒ©ãƒ¼ : " + query.error);
                 continue;
             }
             break;
         }
         var elapsed = Time.time - startTime;
-        Debug.Log($"ƒ‰ƒ“ƒLƒ“ƒOæ“¾ŠÔ: {elapsed}•b");
-        // 1•b–¢–‚Ìê‡‚Í1•b‘Ò‚ÂB
+        Debug.Log($"ãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—æ™‚é–“: {elapsed}ç§’");
+        // 1ç§’æœªæº€ã®å ´åˆã¯1ç§’å¾…ã¤ã€‚
         if (elapsed < 1)
         {
             yield return new WaitForSeconds(1 - elapsed);
         }
         if (query.result != UnityWebRequest.Result.Success)
         {
-            comment.text = "iƒ‰ƒ“ƒLƒ“ƒOæ“¾ƒGƒ‰[Ij\n" + query.error;
+            comment.text = "ï¼ˆãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—ã‚¨ãƒ©ãƒ¼ï¼ï¼‰\n" + query.error;
             yield break;
         }
         var res = default(Response);
         try
         {
-            Debug.Log("ƒ‰ƒ“ƒLƒ“ƒO‰“š: " + query.downloadHandler.text);
+            Debug.Log("ãƒ©ãƒ³ã‚­ãƒ³ã‚°å¿œç­”: " + query.downloadHandler.text);
             res = JsonUtility.FromJson<Response>(query.downloadHandler.text);
             if (res.Error != null)
             {
@@ -248,13 +248,13 @@ public class StageClearSceneManager : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.Log("ƒ‰ƒ“ƒLƒ“ƒO‰“šƒGƒ‰[: " + e.Message);
-            comment.text = "iƒ‰ƒ“ƒLƒ“ƒO‰“šƒGƒ‰[Ij\n" + e.Message;
+            Debug.Log("ãƒ©ãƒ³ã‚­ãƒ³ã‚°å¿œç­”ã‚¨ãƒ©ãƒ¼: " + e.Message);
+            comment.text = "ï¼ˆãƒ©ãƒ³ã‚­ãƒ³ã‚°å¿œç­”ã‚¨ãƒ©ãƒ¼ï¼ï¼‰\n" + e.Message;
             yield break;
         }
 
         {
-            Debug.Log("ƒf[ƒ^æ“¾: " + res.ListResult.Count + "Œ");
+            Debug.Log("ãƒ‡ãƒ¼ã‚¿å–å¾—: " + res.ListResult.Count + "ä»¶");
             var rows = res.ListResult.OrderByDescending(s => s.Score).Select((s, i) => new RankingItem
             {
                 rank = i + 1,
@@ -262,13 +262,13 @@ public class StageClearSceneManager : MonoBehaviour
                 score = s.Score,
             }).ToList();
 
-            // ©•ª‚æ‚è‚‚¢ƒXƒRƒA4‚Â‚ğæ“¾‚·‚éB
+            // è‡ªåˆ†ã‚ˆã‚Šé«˜ã„ã‚¹ã‚³ã‚¢4ã¤ã‚’å–å¾—ã™ã‚‹ã€‚
             var nearAbove4 = rows
                 .Where(r => r.score > myScore)
                 .OrderByDescending(r => r.rank)
                 .Take(4)
                 .ToList();
-            // ©•ª‚æ‚è’á‚¢ƒXƒRƒA4‚Â‚ğæ“¾‚·‚éB
+            // è‡ªåˆ†ã‚ˆã‚Šä½ã„ã‚¹ã‚³ã‚¢4ã¤ã‚’å–å¾—ã™ã‚‹ã€‚
             var nearBelow4 = rows
                 .Where(r => r.score <= myScore)
                 .OrderBy(r => r.rank)
@@ -298,7 +298,7 @@ public class StageClearSceneManager : MonoBehaviour
             var myScoreItem = new RankingItem()
             {
                 rank = myRank,
-                name = "‚ ‚È‚½",
+                name = "ã‚ãªãŸ",
                 score = myScore,
                 isMine = true,
             };
@@ -307,7 +307,7 @@ public class StageClearSceneManager : MonoBehaviour
                 .Concat(new[] { myScoreItem } )
                 .Concat(nearBelows.Select((r, i) => new RankingItem()
                 {
-                    // ƒXƒRƒA‚Ìd•¡‚Í–Ê“|‚È‚Ì‚Å‹C‚É‚µ‚È‚¢B
+                    // ã‚¹ã‚³ã‚¢ã®é‡è¤‡ã¯é¢å€’ãªã®ã§æ°—ã«ã—ãªã„ã€‚
                     rank = myRank + 1 + i,
                     name = r.name,
                     score = r.score,
@@ -347,7 +347,7 @@ public class StageClearSceneManager : MonoBehaviour
                 IEnumerator Takeshi()
                 {
                     yield return new WaitForSeconds(60 * 5);
-                    comment.text = "‚±‚ÌƒQ[ƒ€‚Å—V‚ñ‚Å‚­‚ê‚Ä‚ ‚è‚ª‚Æ‚¤";
+                    comment.text = "ã“ã®ã‚²ãƒ¼ãƒ ã§éŠã‚“ã§ãã‚Œã¦ã‚ã‚ŠãŒã¨ã†";
                 }
             }
             else if (Parameter?.BonusWaveGained ?? false)
@@ -378,7 +378,7 @@ public class StageClearSceneManager : MonoBehaviour
             yield return new WaitForSeconds(10);
             if (calledCallback) yield break;
             calledCallback = true;
-            onFinished?.Invoke("ƒT[ƒo[‚ÉƒAƒNƒZƒX‚Å‚«‚Ü‚¹‚ñ...B");
+            onFinished?.Invoke("ã‚µãƒ¼ãƒãƒ¼ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã›ã‚“...ã€‚");
         }
 
         StartCoroutine(DoWork());
@@ -409,7 +409,7 @@ public class StageClearSceneManager : MonoBehaviour
             var res = default(Response);
             try
             {
-                Debug.Log("ƒ‰ƒ“ƒLƒ“ƒO‰“š: " + query.downloadHandler.text);
+                Debug.Log("ãƒ©ãƒ³ã‚­ãƒ³ã‚°å¿œç­”: " + query.downloadHandler.text);
                 res = JsonUtility.FromJson<Response>(query.downloadHandler.text);
                 if (res.Error != null) throw new System.Exception(res.Error);
             }
@@ -431,11 +431,11 @@ public class StageClearSceneManager : MonoBehaviour
             switch (res)
             {
                 case MKDialogResult.Yes:
-                    // ƒŠƒgƒ‰ƒC
+                    // ãƒªãƒˆãƒ©ã‚¤
                     StartCoroutine(LoadingSceneManager.LoadCoroutine("MKPrototypeScene", curtain));
                     break;
                 case MKDialogResult.No:
-                    // ƒ^ƒCƒgƒ‹‚Ö
+                    // ã‚¿ã‚¤ãƒˆãƒ«ã¸
                     s_prevInputName = "";
                     StartCoroutine(LoadingSceneManager.LoadCoroutine("TitleScene", curtain));
                     break;
